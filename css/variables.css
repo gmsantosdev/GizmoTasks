@@ -1,0 +1,10 @@
+:root {
+    /* Color */
+    --background-color: #EFEFEF;
+    --surface-color: #DFDFDF;
+    --text-color: black;
+
+    /* Typography */
+    --font-primary: "Inter", sans-serif;
+    --font-logo: "Inria Sans", sans-serif;
+}

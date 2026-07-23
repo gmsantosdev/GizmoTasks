@@ -7,7 +7,7 @@ To make the portfolio more professional and accessible.
 
 # Decision 02
 
-The sidebar will contain filters instead of navigation pages.
+The sidebar will centralize task organization and navigation.
 
 Reason:
 Allows future scalability.
@@ -25,3 +25,17 @@ Task creation will require only essential information.
 
 Reason:
 To reduce problems during task creation and allow users to register ideas quickly.
+
+# Decision 05
+
+The project will use Google Fonts to manage the fonts.
+
+Reason:
+To simplify font management during development and avoid storing local font files.
+
+# Decision 06
+
+Colors and font families will be centralized in `variables.css` using CSS Custom Properties (`:root`)
+
+Reason:
+To improve maintainability and support future theme implementation.

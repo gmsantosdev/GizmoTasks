@@ -1,0 +1,68 @@
+@import url("variables.css");
+@import url("reset.css");
+@import url("fonts.css");
+
+a {
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+body {
+    background-color: var(--background-color);
+    font-family: var(--font-primary);
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.headerContent {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+#search {
+    display: flex;
+    padding: 5px;
+    gap: 10px;
+    background-color: var(--surface-color);
+    border-radius: 15px;
+}
+
+#search button {
+    border: none;
+    background-color: var(--surface-color);
+}
+
+#search input {
+    border: none;
+    background-color: var(--surface-color);
+    width: 600px;
+    height: 30px;
+    font-size: 15px;
+    outline: none;
+}
+
+#searchIcon {
+    height: 25px;
+}
+
+.aLogo {
+    display: flex;
+    align-items: center;
+    font-size: 25px;
+    height: 50px;
+    gap: 20px;
+    font-family: var(--font-logo);
+}
+
+.icon {
+    height: 40px;
+}
+
+#menu {
+    margin-left: 30px;
+}

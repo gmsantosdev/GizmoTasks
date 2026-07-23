@@ -26,6 +26,7 @@
 
 - side navigation bar with categories.
 - Task filter by category in the navigation bar.
+- Settings creation interface.
 - Theme settings.
 - Date/time settings.
 - Font size settings.
