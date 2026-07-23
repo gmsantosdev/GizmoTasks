@@ -18,3 +18,10 @@ The application will use LocalStorage before introducing a database.
 
 Reason:
 Simplifies the MVP.
+
+# Decision 04
+
+Task creation will require only essential information.
+
+Reason:
+To reduce problems during task creation and allow users to register ideas quickly.
