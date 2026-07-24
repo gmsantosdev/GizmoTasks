@@ -4,30 +4,33 @@
 
 - Initial interface.
 - Task creation interface.
-- Create task.
-- Delete task.
-- Complete task.
-- Search task.
+- Settings interface.
+- Side navigation bar with categories.
 
 ## Sprint 02
 
+- Create task.
 - Task details page.
-- Task summary.
-- Task edit, cancel and save buttons.
+- Edit task.
+- Delete task.
+- Save and cancel changes.
 
 ## Sprint 03
 
-- Progress bar
-- Due date
-- Creation date
-- Last edited
+- Search task.
+- Task filter by category.
+- Complete task.
+- Progress bar.
+- Due date.
+- Creation date.
+- Last edited.
+- Expired task status.
 
 ## Sprint 04
 
-- side navigation bar with categories.
-- Task filter by category in the navigation bar.
-- Settings creation interface.
 - Theme settings.
 - Date/time settings.
 - Font size settings.
 - Collapsible sidebar.
+- LocalStorage integration.
+- Save user settings.

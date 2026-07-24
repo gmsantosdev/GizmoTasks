@@ -46,3 +46,31 @@ Task cards will automatically display a shortened version of the task summary in
 
 Reason:
 To simplify task creation, reduce duplicated information, and keep task cards consistent.
+
+# Decision 08
+
+Expired tasks will be automatically determined by comparing the current date with the due date.
+
+Reason:
+Prevents inconsistent data and ensures that task status is controlled by the application instead of the user.
+
+# Decision 09
+
+Completed tasks can still be edited.
+
+Reason:
+Allows users to correct mistakes, update information, or reopen finished work without creating duplicate tasks.
+
+# Decision 10
+
+Tasks cannot be created with a due date earlier than the current date.
+
+Reason:
+Prevents invalid task states and guarantees data consistency.
+
+# Decision 11
+
+Expired tasks will appear both in the "All Tasks" view and in the "Expired Tasks" category.
+
+Reason:
+Allows users to find expired tasks easily without removing them from the complete task list.
