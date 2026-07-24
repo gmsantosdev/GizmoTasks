@@ -25,7 +25,7 @@ header {
     align-items: center;
 }
 
-.headerContent {
+.header-content {
     display: flex;
     align-items: center;
     gap: 25px;
@@ -83,7 +83,7 @@ main {
 
 /* ----- SIDEBAR ----- */
 
-.sideBar {
+.sidebar {
     padding: 20px;
     width: 280px;
     display: flex;
@@ -91,20 +91,85 @@ main {
     gap: 20px;
 }
 
-.sideBar ul {
+.sidebar ul {
     list-style: none;
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
-.sideBar ul li img {
+.sidebar ul li img {
     height: 33px;
     width: 30px;
 }
 
-.sideBar ul li a {
+.sidebar ul li a {
     display: flex;
     align-items: center;
+    gap: 20px;
+}
+
+/* ----- TASK SECTION ----- */
+
+.task-section {
+    background-color: var(--main-background-color);
+    border-top-left-radius: 30px;
+    flex: 1;
+}
+
+/* ----- DOTS CUSTOMIZATION ----- */
+
+.dot {
+    font-size: 20px;
+}
+.important {
+    color: var(--important-color);
+}
+
+.today {
+    color: var(--today-color);
+}
+
+.today-important {
+    color: var(--today-important-color);
+}
+
+.default {
+    color: var(--default-color);
+}
+
+.completed {
+    color: var(--completed-color);
+}
+
+/* ----- TASK CAPTION ----- */
+
+.task-caption {
+    display: flex;
+    gap: 30px;
+    margin-left: 60px;
+    padding: 20px;
+    list-style: none;
+}
+
+/* ----- TASK CARD ----- */
+
+.task-list {
+    display: flex;
+    padding: 10px;
+    gap: 25px;
+    justify-content: center;
+    list-style: none;
+}
+
+.task-list li a {
+    background-color: var(--background-color);
+    font-size: 12px;
+    border-radius: 20px;
+    padding: 20px;
+    width: 380px;
+    height: 125px;
+    display: flex;
+    flex-direction: column;
     gap: 20px;
 }

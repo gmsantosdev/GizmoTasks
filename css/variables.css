@@ -3,6 +3,14 @@
     --background-color: #EFEFEF;
     --surface-color: #DFDFDF;
     --text-color: black;
+    --main-background-color: #FFFFFF;
+
+    /* Dots colors */
+    --important-color: #FF0000;
+    --today-color: #ADB44A;
+    --today-important-color: #2600CF;
+    --default-color: #FF00C8;
+    --completed-color: #00C52B;
 
     /* Typography */
     --font-primary: "Inter", sans-serif;

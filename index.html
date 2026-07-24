@@ -8,7 +8,7 @@
 </head>
 <body>
     <header>
-        <div class="headerContent">
+        <div class="header-content">
             <img src="assets/icons/menu.png" alt="Menu icon" id="menu" class="icon">
             <a href="index.html" class="aLogo"><img src="assets/images/icon-Black.png" alt="GizmoTasks logo" class="icon"><span>GizmoTasks</span></a>
 
@@ -21,42 +21,48 @@
         <a href="settings.html"><img src="assets/icons/settings.png" alt="Settings icon"></a>
     </header>
     <main>
-            <nav class="sideBar">
-                <ul>
-                    <li><a href=""><img src="assets/icons/all-tasks.png" alt="All tasks icon"><span>All tasks</span></a></li>
-                    <li><a href=""><img src="assets/icons/new-task.png" alt="New task icon"><span>Create task</span></a></li>
-                </ul>
-                <ul>
-                    <li><a href=""><img src="assets/icons/default-task.png" alt="Default task icon"><span>Default tasks</span></a></li>
-                    <li><a href=""><img src="assets/icons/today-task.png" alt="Today tasks icon"><span>Today tasks</span></a></li>
-                    <li><a href=""><img src="assets/icons/today-important.png" alt="Today important icon"><span>Today important tasks</span></a></li>
-                    <li><a href=""><img src="assets/icons/important-task.png" alt="Important icon"><span>Important tasks</span></a></li>
-                    <li><a href=""><img src="assets/icons/completed-task.png" alt="Completed icon"><span>Completed tasks</span></a></li>
-                </ul>
-            </nav>
-
-        <section>
+        <nav class="sidebar">
             <ul>
-                <li>Important</li>
-                <li>Today Tasks</li>
-                <li>Today Important</li>
-                <li>Default</li>
-                <li>Completed</li>
+                <li><a href=""><img src="assets/icons/all-tasks.png" alt="All tasks icon"><span>All tasks</span></a></li>
+                <li><a href=""><img src="assets/icons/new-task.png" alt="New task icon"><span>Create task</span></a></li>
+            </ul>
+            <ul>
+                <li><a href=""><img src="assets/icons/default-task.png" alt="Default task icon"><span>Default tasks</span></a></li>
+                <li><a href=""><img src="assets/icons/today-task.png" alt="Today tasks icon"><span>Today tasks</span></a></li>
+                <li><a href=""><img src="assets/icons/today-important.png" alt="Today important icon"><span>Today important tasks</span></a></li>
+                <li><a href=""><img src="assets/icons/important-task.png" alt="Important icon"><span>Important tasks</span></a></li>
+                <li><a href=""><img src="assets/icons/completed-task.png" alt="Completed icon"><span>Completed tasks</span></a></li>
+            </ul>
+        </nav>
+
+        <section class="task-section">
+            <ul class="task-caption">
+                <li><span class="important dot">●</span> Important</li>
+                <li><span class="today dot">●</span> Today Tasks</li>
+                <li><span class="today-important dot">●</span> Today Important</li>
+                <li><span class="default dot">●</span> Default</li>
+                <li><span class="completed dot">●</span> Completed</li>
             </ul>
             
-            <!--Lista de tarefas-->
-            <ul>
+            <!-- Task List -->
+            <ul class="task-list">
                 <li>
-                    <h2>Payment prototype</h2>
-                    <p>Create the initial prototype of the payment screen.</p>
+                    <a href="">
+                        <h2><span class="important dot">●</span> Payment prototype</h2>
+                        <p>Create the initial prototype of the payment screen.</p>
+                    </a>
                 </li>
                 <li>
-                    <h2>Website Development</h2>
-                    <p>Add login and register options.</p>
+                    <a href="">
+                        <h2><span class="completed dot">●</span> Website Development</h2>
+                        <p>Add login and register options.</p>
+                    </a>
                 </li>
                 <li>
-                    <h2>Mobile App</h2>
-                    <p>Carry out the initial design of the mobile app.</p>
+                    <a href="">
+                        <h2><span class="today dot">●</span> Mobile App</h2>
+                        <p>Carry out the initial design of the mobile app.</p>
+                    </a>
                 </li>
             </ul>
         </section>
