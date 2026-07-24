@@ -2,6 +2,8 @@
 @import url("reset.css");
 @import url("fonts.css");
 
+/* ----- OTHERS -----*/
+
 a {
     text-decoration: none;
     color: var(--text-color);
@@ -10,7 +12,12 @@ a {
 body {
     background-color: var(--background-color);
     font-family: var(--font-primary);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
+
+/* ----- HEADER ----- */
 
 header {
     display: flex;
@@ -65,4 +72,39 @@ header {
 
 #menu {
     margin-left: 30px;
+}
+
+/* ----- MAIN LAYOUT ----- */
+
+main {
+    display: flex;
+    flex: 1;
+}
+
+/* ----- SIDEBAR ----- */
+
+.sideBar {
+    padding: 20px;
+    width: 280px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.sideBar ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.sideBar ul li img {
+    height: 33px;
+    width: 30px;
+}
+
+.sideBar ul li a {
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }
