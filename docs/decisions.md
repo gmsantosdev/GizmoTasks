@@ -39,3 +39,10 @@ Colors and font families will be centralized in `variables.css` using CSS Custom
 
 Reason:
 To improve maintainability and support future theme implementation.
+
+# Decision 07
+
+Task cards will automatically display a shortened version of the task summary instead of requiring a separate description field.
+
+Reason:
+To simplify task creation, reduce duplicated information, and keep task cards consistent.
