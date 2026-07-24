@@ -3,6 +3,7 @@
     --background-color: #EFEFEF;
     --surface-color: #DFDFDF;
     --text-color: black;
+    --smooth-text-color: #8E8E8E;
     --main-background-color: #FFFFFF;
 
     /* Dots colors */
@@ -11,6 +12,11 @@
     --today-important-color: #2600CF;
     --default-color: #FF00C8;
     --completed-color: #00C52B;
+
+    /* Button Colors */
+    --cancel-button-color: #FF8A36;
+    --confirm-button-color: #5B89FF;
+    --delete-button-color: #FF6C6C;
 
     /* Typography */
     --font-primary: "Inter", sans-serif;

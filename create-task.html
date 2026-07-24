@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GizmoTasks</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <img src="assets/icons/menu.png" alt="Menu icon" id="menu" class="icon">
+            <a href="index.html" class="aLogo"><img src="assets/images/icon-Black.png" alt="GizmoTasks logo" class="icon"><span>GizmoTasks</span></a>
+
+            <form action="" id="search">
+                <button type="submit"><img src="assets/icons/search-task.png" alt="Search button icon" id="searchIcon"></button>
+                <input type="text" placeholder="Search tasks...">
+            </form>
+        </div>
+
+        <a href="settings.html"><img src="assets/icons/settings.png" alt="Settings icon"></a>
+    </header>
+    <main>
+        <nav class="sidebar">
+            <ul>
+                <li><a href="index.html"><img src="assets/icons/all-tasks.png" alt="All tasks icon"><span>All tasks</span></a></li>
+                <li><a href="create-task.html"><img src="assets/icons/new-task.png" alt="New task icon"><span>Create task</span></a></li>
+            </ul>
+            <ul>
+                <li><a href=""><img src="assets/icons/default-task.png" alt="Default task icon"><span>Default tasks</span></a></li>
+                <li><a href=""><img src="assets/icons/today-task.png" alt="Today tasks icon"><span>Today tasks</span></a></li>
+                <li><a href=""><img src="assets/icons/today-important.png" alt="Today important icon"><span>Today important tasks</span></a></li>
+                <li><a href=""><img src="assets/icons/important-task.png" alt="Important icon"><span>Important tasks</span></a></li>
+                <li><a href=""><img src="assets/icons/completed-task.png" alt="Completed icon"><span>Completed tasks</span></a></li>
+            </ul>
+        </nav>
+
+        <section class="main-section">
+            <h1><img src="assets/icons/new-task.png" alt="Create new task icon"> <span>Create new task</span></h1>
+
+            <form action="" id="create">
+                <div class="form-group">
+                    <label for="task-name"><img src="assets/icons/edit.png" alt="Edit icon"> <span>Name</span></label>
+                    <input id="task-name" name="task-name" type="text" placeholder="Write the name of the task..." required>
+                </div>
+
+                <div class="form-group">
+                    <label for="task-summary"><img src="assets/icons/summary.png" alt="Summary icon"> <span>Summary</span></label>
+                    <textarea id="task-summary" name="task-summary" placeholder="Write the summary of the task..." required></textarea>
+                </div>
+
+                <div class="triple-group">
+                    <div class="form-group">
+                        <label for="task-category"><img src="assets/icons/category.png" alt="Category icon"><span>Category</span></label>
+                        <select id="task-category" name="task-category">
+                            <option value="default" selected>Default task</option>
+                            <option value="today">Today task</option>
+                            <option value="today-important">Today important task</option>
+                            <option value="important">Important task</option>
+                            <option value="completed">Completed task</option>
+                        </select>
+                        <p>Select a category that matches the task's priority.</p>
+                    </div>
+                
+                    <div class="form-group">
+                        <label for="task-date"><img src="assets/icons/today-task.png" alt="Expiration date icon"> <span>Expiration date</span></label>
+                        <input type="date" id="task-date" name="task-date">
+                        <p>Select a date that matches the task's expiration date.</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="task-range"><img src="assets/icons/progress.png" alt="Progress icon"> <span>Progress</span></label>
+
+                        <div class="range-container">
+                            <span>Percentage: </span>
+
+                            <span>0%</span>
+                            <input type="range" name="task-range" max="100" min="0" step="1" value="0" id="task-range">
+                            <span>100%</span>
+                        </div>
+
+                        <p>Enter the completion percentage if you have already started the task.</p>
+                    </div>
+                </div>
+
+                <div class="submit-buttons">
+                    <a href="index.html">
+                        <span class="image-background cancel"><img src="assets/icons/cancel.png" alt="Cancel changes icon"></span>
+                        <span>Cancel<br>changes</span>
+                    </a>
+
+                    <button type="submit" name="action" value="save">
+                        <span class="image-background confirm"><img src="assets/icons/confirm.png" alt="Confirm changes icon"></span>
+                        <span>Confirm<br>changes</span>
+                    </button>
+                </div>
+
+            </form>
+        </section>
+    </main>
+</body>
+</html>

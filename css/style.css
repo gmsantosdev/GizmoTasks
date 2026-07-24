@@ -17,6 +17,10 @@ body {
     flex-direction: column;
 }
 
+textarea {
+    resize: none;
+}
+
 /* ----- HEADER ----- */
 
 header {
@@ -109,12 +113,13 @@ main {
     gap: 20px;
 }
 
-/* ----- TASK SECTION ----- */
+/* ----- MAIN SECTION ----- */
 
-.task-section {
+.main-section {
     background-color: var(--main-background-color);
     border-top-left-radius: 30px;
     flex: 1;
+    padding: 20px;
 }
 
 /* ----- DOTS CUSTOMIZATION ----- */
@@ -148,7 +153,6 @@ main {
     display: flex;
     gap: 30px;
     margin-left: 60px;
-    padding: 20px;
     list-style: none;
 }
 
@@ -172,4 +176,115 @@ main {
     display: flex;
     flex-direction: column;
     gap: 20px;
+}
+
+/* ----- NEW TASK ----- */
+
+.main-section h1 {
+    font-size: 30px;
+    padding: 10px;
+    font-weight: normal;
+}
+
+.main-section label img {
+    height: 25px;
+}
+
+#create {
+    background-color: var(--background-color);
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    gap: 10px;
+}
+
+.form-group label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 25px;
+}
+
+.form-group input[type="text"], .form-group textarea {
+    border: none;
+    padding: 15px;
+    background-color: var(--surface-color);
+    border-radius: 20px;
+    outline: none;
+}
+
+.form-group textarea {
+    height: 150px;
+}
+
+.triple-group {
+    display: flex;
+    gap: 10px;
+}
+
+.triple-group input, .triple-group select {
+    border: none;
+    padding: 5px;
+    border-radius: 10px;
+    background-color: var(--surface-color);
+    width: 150px;
+    cursor: pointer;
+    outline: none;
+}
+
+.triple-group p {
+    color: var(--smooth-text-color);
+}
+
+.range-container {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.range-container input {
+    cursor: pointer;
+}
+
+/* ----- SUBMIT BUTTONS ----- */
+
+.submit-buttons {
+    display: flex;
+    justify-content: end;
+    gap: 20px;
+}
+
+.submit-buttons a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 15px;
+}
+
+.image-background {
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.cancel {
+    background-color: var(--cancel-button-color);
+}
+
+.confirm {
+    background-color: var(--confirm-button-color);
+}
+
+.submit-buttons button {
+    width: 150px;
+    display: flex;
+    border: none;
+    gap: 10px;
+    align-items: center;
+    font-size: 15px;
+    cursor: pointer;
 }
