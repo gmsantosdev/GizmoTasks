@@ -23,3 +23,23 @@ Tasks cannot be created with a past due date.
 ## Rule 06
 
 Task summaries displayed on cards are automatically truncated.
+
+## Rule 07
+
+Only tasks that are not already completed can be marked as completed.
+
+## Rule 08
+
+Completed tasks can be marked as active again.
+
+## Rule 09
+
+Expired tasks automatically return to the appropriate status when their due date is updated.
+
+## Rule 10
+
+The Today status is generated automatically from the due date.
+
+## Rule 11
+
+Changing a task status does not modify its category.

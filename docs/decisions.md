@@ -74,3 +74,24 @@ Expired tasks will appear both in the "All Tasks" view and in the "Expired Tasks
 
 Reason:
 Allows users to find expired tasks easily without removing them from the complete task list.
+
+# Decision 12
+
+Task category and task status are different concepts.
+
+Reason:
+Categories organize tasks by priority, while status represents the current lifecycle of the task.
+
+# Decision 13
+
+Completed and expired tasks preserve their original category.
+
+Reason:
+Allows tasks to return to their previous organization when their status changes.
+
+# Decision 14
+
+The Today status is calculated automatically from the due date instead of being stored.
+
+Reason:
+Prevents outdated information and keeps the task list synchronized with the current date.

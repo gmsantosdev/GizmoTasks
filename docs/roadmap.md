@@ -10,6 +10,7 @@
 ## Sprint 02
 
 - Create task.
+- LocalStorage integration
 - Task details page.
 - Edit task.
 - Delete task.
@@ -32,5 +33,4 @@
 - Date/time settings.
 - Font size settings.
 - Collapsible sidebar.
-- LocalStorage integration.
 - Save user settings.

@@ -147,6 +147,10 @@ main {
     color: var(--completed-color);
 }
 
+.expired {
+    color: var(--expired-color);
+}
+
 /* ----- TASK CAPTION ----- */
 
 .task-caption {

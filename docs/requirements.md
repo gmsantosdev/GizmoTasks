@@ -8,8 +8,12 @@
 - The user can search tasks.
 - The user can filter tasks by category.
 - The user can configure application preferences.
+- The user can mark completed tasks as active again.
+- The application automatically updates task status according to the due date.
+- The user can update a task due date.
+- The user can complete expired tasks.
 
-# Non-functional Requirements# Non-functional Requirements
+# Non-functional Requirements
 
 - Interface in English.
 - Local data persistence using LocalStorage.
