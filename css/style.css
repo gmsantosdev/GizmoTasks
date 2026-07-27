@@ -194,7 +194,7 @@ main {
     height: 25px;
 }
 
-#create {
+#create, #details {
     background-color: var(--background-color);
     border-radius: 20px;
     padding: 20px;
@@ -287,6 +287,12 @@ main {
     align-items: center;
     gap: 10px;
     font-size: 15px;
+    width: 150px;
+}
+
+.submit-buttons img {
+    width: 35px;
+    height: 30px;
 }
 
 .image-background {
@@ -302,12 +308,40 @@ main {
     background-color: var(--confirm-button-color);
 }
 
+.mark-complete {
+    background-color: var(--complete-button-color);
+}
+
+.delete {
+    background-color: var(--delete-button-color);
+}
+
 .submit-buttons button {
-    width: 150px;
+    width: 150px;;
     display: flex;
     border: none;
     gap: 10px;
     align-items: center;
     font-size: 15px;
     cursor: pointer;
+}
+
+/* ----- TASK DETAILS ----- */
+
+.final-details {
+    display: flex;
+    justify-content: space-between;
+}
+
+.buttons-group {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.task-infos {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    justify-content: flex-end;
 }
