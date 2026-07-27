@@ -204,7 +204,7 @@ main {
     display: flex;
     flex-direction: column;
     padding: 10px;
-    gap: 10px;
+    gap: 5px;
 }
 
 .form-group label {
@@ -212,6 +212,25 @@ main {
     align-items: center;
     gap: 10px;
     font-size: 25px;
+}
+
+.date-time {
+    display: flex;
+    gap: 20px;
+}
+
+.date-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.date-field label {
+    font-size: 18px;
+}
+
+.date-field input {
+    width: 170px;
 }
 
 .form-group input[type="text"], .form-group textarea {
