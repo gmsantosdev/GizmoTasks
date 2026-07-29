@@ -2,9 +2,16 @@ export function renderTaskDetails(task) {
     const taskName = document.querySelector("#task-name");
     taskName.textContent = task.name;
 
-    const taskDot = document.querySelectorAll(".task-dot");
-    for (const dot of taskDot) {
-        dot.className = `task-dot ${task.category}`;
+    if (task.status === "completed" || task.status === "expired") {
+        const taskDot = document.querySelectorAll(".task-dot");
+        for (const dot of taskDot) {
+            dot.className = `task-dot ${task.status}`;
+        }
+    } else {
+        const taskDot = document.querySelectorAll(".task-dot");
+        for (const dot of taskDot) {
+            dot.className = `task-dot ${task.category}`;
+        }
     }
 
     const taskSummary = document.querySelector("#task-summary");
@@ -36,7 +43,7 @@ export function renderTaskDetails(task) {
     }
     
     const dueDateDetail = document.querySelector("#due-date");
-    if (time === "") {
+    if (!time) {
         dueDateDetail.textContent = `${date.replace(/-/g, "/")}.`;
     } else {
         dueDateDetail.textContent = `${date.replace(/-/g, "/")}, at ${time}.`;
@@ -47,5 +54,43 @@ export function renderTaskDetails(task) {
         completedDateDetail.textContent = `-`;
     } else {
         completedDateDetail.textContent = `${task.completedAt.replace("T", ", at ").replace(/-/g, "/")}.`;
+    }
+
+    const completeText = document.querySelector("#complete-text");
+    if (task.status === "completed") {
+        completeText.textContent = `Mark as incomplete`;
+    } else {
+        completeText.textContent = `Mark as complete`;
+    }
+}
+
+export function updateStatusUI(task) {
+    if (task.status === "completed" || task.status === "expired") {
+        const taskDot = document.querySelectorAll(".task-dot");
+        for (const dot of taskDot) {
+            dot.className = `task-dot ${task.status}`;
+        }
+    } else {
+        const taskDot = document.querySelectorAll(".task-dot");
+        for (const dot of taskDot) {
+            dot.className = `task-dot ${task.category}`;
+        }
+    }
+
+    const taskStatus = document.querySelector("#task-status");
+    taskStatus.textContent = task.status[0].toUpperCase() + task.status.slice(1);
+
+    const completedDateDetail = document.querySelector("#completed-date");
+    if (task.completedAt === null) {
+        completedDateDetail.textContent = `-`;
+    } else {
+        completedDateDetail.textContent = `${task.completedAt.replace("T", ", at ").replace(/-/g, "/")}.`;
+    }
+
+    const completeText = document.querySelector("#complete-text");
+    if (task.status === "completed") {
+        completeText.textContent = `Mark as incomplete`;
+    } else {
+        completeText.textContent = `Mark as complete`;
     }
 }

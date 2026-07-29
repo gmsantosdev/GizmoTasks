@@ -1,15 +1,18 @@
 import { createTask } from "./task.js";
 import { updateTask, getTaskById } from "./storage.js";
-import { renderTaskDetails } from "./ui.js";
 
 const params = new URLSearchParams(window.location.search);
 const id = Number(params.get("id"));
 
-const saveButton = document.querySelector("#confirm-button");
-saveButton.addEventListener("click", saveTaskChanges);
+const form = document.querySelector("#details");
+form.addEventListener("submit", saveTaskChanges);
 
 function saveTaskChanges(event) {
     event.preventDefault()
+
+    if (event.submitter.value !== "save") {
+        return;
+    }
 
     const task = getTaskById(id);
 

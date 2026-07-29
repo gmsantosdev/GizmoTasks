@@ -14,7 +14,12 @@ function handleSubmit(event) {
     const timeInput = document.querySelector("#task-time").value;
     const rangeInput = document.querySelector("#task-range").value;
 
-    const dueAt = dateInput + "T" + timeInput;
+    let dueAt;
+    if (!timeInput) {
+        dueAt = dateInput;
+    } else {
+        dueAt = dateInput + "T" + timeInput;
+    }
     const now = new Date();
     const createdAt = now.getFullYear() + "-" + String(now.getMonth() + 1).padStart(2, "0") + "-" + String(now.getDate()).padStart(2, "0") + "T" + String(now.getHours()).padStart(2, "0") + ":" + String(now.getMinutes()).padStart(2, "0");
     const id = generateId();
