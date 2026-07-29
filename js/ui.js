@@ -36,7 +36,11 @@ export function renderTaskDetails(task) {
     }
     
     const dueDateDetail = document.querySelector("#due-date");
-    dueDateDetail.textContent = `${date.replace(/-/g, "/")}, at ${time}.`;
+    if (time === "") {
+        dueDateDetail.textContent = `${date.replace(/-/g, "/")}.`;
+    } else {
+        dueDateDetail.textContent = `${date.replace(/-/g, "/")}, at ${time}.`;
+    }
 
     const completedDateDetail = document.querySelector("#completed-date");
     if (task.completedAt === null) {
