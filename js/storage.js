@@ -50,3 +50,16 @@ export function updateTask(task) {
 
     localStorage.setItem("tasks", JSON.stringify(allTasks));
 }
+
+export function removeTask(task) {
+    const allTasks = getTasks();
+
+    for (let i = 0; i < allTasks.length; i++) {
+        if (allTasks[i].id === task.id) {
+            allTasks.splice(i, 1);
+            break;
+        }
+    }
+
+    localStorage.setItem("tasks", JSON.stringify(allTasks));
+}
