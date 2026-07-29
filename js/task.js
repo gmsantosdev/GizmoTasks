@@ -1,14 +1,14 @@
-export function createTask(id, name, summary, category, progress, dueAt, createdAt) {
+export function createTask(id, name, summary, category, progress, status, dueAt, createdAt, updatedAt, completedAt) {
     return {
         id,
         name,
         summary,
         category,
         progress,
-        status: "active",
+        status,
         dueAt,
         createdAt,
-        updatedAt: null,
-        completedAt: null
+        updatedAt,
+        completedAt
     };
 }

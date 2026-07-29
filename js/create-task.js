@@ -19,7 +19,7 @@ function handleSubmit(event) {
     const createdAt = now.getFullYear() + "-" + String(now.getMonth() + 1).padStart(2, "0") + "-" + String(now.getDate()).padStart(2, "0") + "T" + String(now.getHours()).padStart(2, "0") + ":" + String(now.getMinutes()).padStart(2, "0");
     const id = generateId();
 
-    saveTask(createTask(id, nameInput, summaryInput, categoryInput, rangeInput, dueAt, createdAt));
+    saveTask(createTask(id, nameInput, summaryInput, categoryInput, rangeInput, "active", dueAt, createdAt, null, null));
     form.reset();
     alert("Task created successfully!");
 }

@@ -31,3 +31,22 @@ export function generateId() {
 
     return biggerId + 1;
 }
+
+export function getTaskById(id) {
+    const allTasks = getTasks();
+
+    return allTasks.find(task => task.id === id);
+}
+
+export function updateTask(task) {
+    const allTasks = getTasks();
+
+    for (let i = 0; i < allTasks.length; i++) {
+        if (allTasks[i].id === task.id) {
+            allTasks[i] = task;
+            break;
+        }
+    }
+
+    localStorage.setItem("tasks", JSON.stringify(allTasks));
+}

@@ -37,13 +37,15 @@
         </nav>
 
         <section class="main-section">
-            <h1><span class="important">●</span> Payment prototype</h1>
+            <h1>
+                <span class="task-dot">●</span>
+                <span id="task-name"></span>
+            </h1>
 
-            <form action="" id="details">
+            <form id="details">
                 <div class="form-group">
                     <label for="task-summary"><img src="assets/icons/summary.png" alt="Summary icon"><span>Summary</span></label>
-                    <textarea name="task-summary" id="task-summary" placeholder="Write the summary of the task...">Build a high-fidelity payment prototype screen that simulates the full checkout flow, including card input formatting, payment method selection, and real-time error validation. I need to ensure all interactions (like 3D Secure modals and success states) work smoothly while strictly following our design system. 
-Next, I will test the flow for accessibility and network latency issues, specifically checking the "save card" toggle and loading states. Finally, I'll run a quick internal review to validate the security badge placement and user clarity before finalizing the handoff.</textarea>
+                    <textarea name="task-summary" id="task-summary" placeholder="Write the summary of the task..."></textarea>
                 </div>
 
                 <div class="triple-group">
@@ -51,7 +53,7 @@ Next, I will test the flow for accessibility and network latency issues, specifi
                         <label for="task-category"><img src="assets/icons/category.png" alt="Category icon"><span>Category</span></label>
                         <select name="task-category" id="task-category">
                             <option value="default">Default task</option>
-                            <option value="important" selected>Important task</option>
+                            <option value="important">Important task</option>
                         </select>
                         <p>Select a category that matches the task's priority.</p>
                     </div>
@@ -65,12 +67,12 @@ Next, I will test the flow for accessibility and network latency issues, specifi
                         <div class="date-time">
                             <div class="date-field">
                                 <label for="task-date">Date</label>
-                                <input type="date" id="task-date" name="task-date" value="2026-07-20">
+                                <input type="date" id="task-date" name="task-date">
                             </div>
 
                             <div class="date-field">
                                 <label for="task-time">Time</label>
-                                <input type="time" id="task-time" name="task-time" value="15:36">
+                                <input type="time" id="task-time" name="task-time">
                             </div>
                         </div>
 
@@ -84,7 +86,7 @@ Next, I will test the flow for accessibility and network latency issues, specifi
                             <span>Percentage: </span>
 
                             <span>0%</span>
-                            <input type="range" name="task-range" max="100" min="0" step="1" value="0" id="task-range">
+                            <input type="range" name="task-range" max="100" min="0" step="1" id="task-range">
                             <span>100%</span>
                         </div>
 
@@ -94,11 +96,27 @@ Next, I will test the flow for accessibility and network latency issues, specifi
 
                 <div class="final-details">
                     <div class="task-infos">
-                        <p>Status: <span class="important">●</span> Active</p>
-                        <p>Created: 07/20/2026, at 03:36 PM.</p>
-                        <p>Last modified: 07/21/2026, at 10:47 AM.</p>
-                        <p>Due date: 07/26/2026, at 12:59 PM.</p>
-                        <p>Completed date: -</p>
+                        <p>
+                            <span>Status: </span>
+                            <span class="task-dot">●</span>
+                            <span id="task-status"></span>
+                        </p>
+                        <p>
+                            <span>Created: </span>
+                            <span id="created-date"></span>
+                        </p>
+                        <p>
+                            <span>Last modified: </span>
+                            <span id="updated-date"></span>
+                        </p>
+                        <p>
+                            <span>Due date:</span>
+                            <span id="due-date"></span>
+                        </p>
+                        <p>
+                            <span>Completed date:</span>
+                            <span id="completed-date"></span>
+                        </p>
                     </div>
 
                     <div class="buttons-group">
@@ -127,5 +145,7 @@ Next, I will test the flow for accessibility and network latency issues, specifi
             </form>
         </section>
     </main>
+    <script type="module" src="js/task-details.js"></script>
+    <script type="module" src="js/edit-task.js"></script>
 </body>
 </html>
