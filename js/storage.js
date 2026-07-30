@@ -1,4 +1,4 @@
-function getTasks() {
+export function getTasks() {
     let tasks = JSON.parse(localStorage.getItem("tasks"));
 
     if (tasks == null) {

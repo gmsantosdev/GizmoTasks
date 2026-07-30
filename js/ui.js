@@ -94,3 +94,45 @@ export function updateStatusUI(task) {
         completeText.textContent = `Mark as complete`;
     }
 }
+
+function renderTask(task) {
+    const container = document.querySelector(".task-list");
+    const card = document.createElement("li");
+    const cardLink = document.createElement("a");
+    cardLink.href = `task-details.html?id=${task.id}`;
+
+    const title = document.createElement("h2");
+    const titleSpan1 = document.createElement("span");
+    titleSpan1.textContent = "● ";
+    if (task.status !== "active") {
+        titleSpan1.className = `${task.status} dot`;
+    } else {
+        titleSpan1.className = `${task.category} dot`;
+    }
+    const titleSpan2 = document.createElement("span");
+    titleSpan2.textContent = task.name;
+
+    const taskAbstract = document.createElement("p");
+    const maxLength = 100;
+    let abstract = task.summary;
+
+    if (abstract.length > maxLength) {
+        abstract = abstract.slice(0, maxLength);
+        abstract = abstract.slice(0, abstract.lastIndexOf(" "));
+        abstract = abstract.replace(/[.,;:!?]+$/, "");
+        abstract += "...";
+    }
+
+    taskAbstract.textContent = abstract;
+
+    title.append(titleSpan1, titleSpan2);
+    cardLink.append(title, taskAbstract);
+    card.append(cardLink);
+    container.append(card);
+}
+
+export function renderTasks(tasks) {
+    for (const task of tasks) {
+        renderTask(task);
+    }
+}
