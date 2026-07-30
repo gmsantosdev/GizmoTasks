@@ -43,11 +43,6 @@ header {
     border-radius: 15px;
 }
 
-#search button {
-    border: none;
-    background-color: var(--surface-color);
-}
-
 #search input {
     border: none;
     background-color: var(--surface-color);
@@ -59,6 +54,10 @@ header {
 
 #searchIcon {
     height: 25px;
+}
+
+#search div {
+    margin-left: 5px;
 }
 
 .aLogo {

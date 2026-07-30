@@ -136,3 +136,8 @@ export function renderTasks(tasks) {
         renderTask(task);
     }
 }
+
+export function clearTasks() {
+    const container = document.querySelector(".task-list");
+    container.innerHTML = "";
+}
