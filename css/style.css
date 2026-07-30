@@ -167,6 +167,8 @@ main {
     gap: 25px;
     justify-content: center;
     list-style: none;
+    flex: 1;
+    flex-wrap: wrap;
 }
 
 .task-list li a {

@@ -2,13 +2,26 @@ export function renderTaskDetails(task) {
     const taskName = document.querySelector("#task-name");
     taskName.textContent = task.name;
 
+    const today = new Date().toISOString().slice(0, 10);
+    console.log(today);
+    console.log(task.dueAt);
+    console.log(task.dueAt.slice(0, 10));
+    const taskDot = document.querySelectorAll(".task-dot");
     if (task.status === "completed" || task.status === "expired") {
-        const taskDot = document.querySelectorAll(".task-dot");
         for (const dot of taskDot) {
             dot.className = `task-dot ${task.status}`;
         }
+    } else if (today === task.dueAt.slice(0, 10)) {
+        if (task.category === "important") {
+            for (const dot of taskDot) {
+                dot.className = `task-dot today-important`;
+            }
+        } else {
+            for (const dot of taskDot) {
+                dot.className = `task-dot today`;
+            }
+        }
     } else {
-        const taskDot = document.querySelectorAll(".task-dot");
         for (const dot of taskDot) {
             dot.className = `task-dot ${task.category}`;
         }
@@ -65,13 +78,23 @@ export function renderTaskDetails(task) {
 }
 
 export function updateStatusUI(task) {
+    const today = new Date().toISOString().slice(0, 10);
+    const taskDot = document.querySelectorAll(".task-dot");
     if (task.status === "completed" || task.status === "expired") {
-        const taskDot = document.querySelectorAll(".task-dot");
         for (const dot of taskDot) {
             dot.className = `task-dot ${task.status}`;
         }
+    } else if (today === task.dueAt.slice(0, 10)) {
+        if (task.category === "important") {
+            for (const dot of taskDot) {
+                dot.className = `task-dot today-important`;
+            }
+        } else {
+            for (const dot of taskDot) {
+                dot.className = `task-dot today`;
+            }
+        }
     } else {
-        const taskDot = document.querySelectorAll(".task-dot");
         for (const dot of taskDot) {
             dot.className = `task-dot ${task.category}`;
         }
@@ -96,6 +119,7 @@ export function updateStatusUI(task) {
 }
 
 function renderTask(task) {
+    console.log("rendertask")
     const container = document.querySelector(".task-list");
     const card = document.createElement("li");
     const cardLink = document.createElement("a");
@@ -104,8 +128,16 @@ function renderTask(task) {
     const title = document.createElement("h2");
     const titleSpan1 = document.createElement("span");
     titleSpan1.textContent = "● ";
+
+    const today = new Date().toISOString().slice(0, 10);
     if (task.status !== "active") {
         titleSpan1.className = `${task.status} dot`;
+    } else if (today === task.dueAt.slice(0, 10)) {
+        if (task.category === "important") {
+            titleSpan1.className = `today-important dot`;
+        } else {
+            titleSpan1.className = `today dot`;
+        }
     } else {
         titleSpan1.className = `${task.category} dot`;
     }
