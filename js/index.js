@@ -28,7 +28,7 @@ function handleSearch(event) {
     event.preventDefault();
 
     const searchInput = document.querySelector("#search-text").value;
-    const newTasks = searchTasks(searchInput, tasks, status, category, filter);
+    const newTasks = searchTasks(searchInput, tasks);
 
     clearTasks();
     renderTasks(newTasks);

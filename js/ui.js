@@ -3,9 +3,6 @@ export function renderTaskDetails(task) {
     taskName.textContent = task.name;
 
     const today = new Date().toISOString().slice(0, 10);
-    console.log(today);
-    console.log(task.dueAt);
-    console.log(task.dueAt.slice(0, 10));
     const taskDot = document.querySelectorAll(".task-dot");
     if (task.status === "completed" || task.status === "expired") {
         for (const dot of taskDot) {
@@ -119,7 +116,6 @@ export function updateStatusUI(task) {
 }
 
 function renderTask(task) {
-    console.log("rendertask")
     const container = document.querySelector(".task-list");
     const card = document.createElement("li");
     const cardLink = document.createElement("a");
@@ -172,4 +168,9 @@ export function renderTasks(tasks) {
 export function clearTasks() {
     const container = document.querySelector(".task-list");
     container.innerHTML = "";
+}
+
+export function renderPercentage(percentage) {
+    const rangeSpan = document.querySelector("#range-span");
+    rangeSpan.textContent = `${percentage}%`;
 }
