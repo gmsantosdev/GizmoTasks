@@ -1,7 +1,4 @@
 export function renderTaskDetails(task) {
-    const taskName = document.querySelector("#task-name");
-    taskName.textContent = task.name;
-
     const today = new Date().toISOString().slice(0, 10);
     const taskDot = document.querySelectorAll(".task-dot");
     if (task.status === "completed" || task.status === "expired") {
@@ -23,6 +20,9 @@ export function renderTaskDetails(task) {
             dot.className = `task-dot ${task.category}`;
         }
     }
+
+    const taskName = document.querySelector("#task-name");
+    taskName.value = task.name;
 
     const taskSummary = document.querySelector("#task-summary");
     taskSummary.value = task.summary;

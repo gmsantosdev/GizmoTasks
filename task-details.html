@@ -37,12 +37,12 @@
         </nav>
 
         <section class="main-section">
-            <h1>
-                <span class="task-dot">●</span>
-                <span id="task-name"></span>
-            </h1>
-
             <form id="details">
+                <div class="title-group">
+                    <span class="task-dot">●</span>
+                    <input type="text" id="task-name" placeholder="Rename the task name..." maxlength="28">
+                </div>
+
                 <div class="form-group">
                     <label for="task-summary"><img src="assets/icons/summary.png" alt="Summary icon"><span>Summary</span></label>
                     <textarea name="task-summary" id="task-summary" placeholder="Write the summary of the task..."></textarea>
@@ -67,7 +67,7 @@
                         <div class="date-time">
                             <div class="date-field">
                                 <label for="task-date">Date</label>
-                                <input type="date" id="task-date" name="task-date">
+                                <input type="date" id="task-date" name="task-date" min="">
                             </div>
 
                             <div class="date-field">

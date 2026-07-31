@@ -5,6 +5,6 @@ const rangeInput = document.querySelector("#task-range");
 renderPercentage(rangeInput.value);
 rangeInput.addEventListener("input", handleRange);
 
-function handleRange(event) {
+function handleRange() {
     renderPercentage(rangeInput.value);
 }

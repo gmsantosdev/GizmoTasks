@@ -75,6 +75,7 @@ header {
 
 #menu {
     margin-left: 30px;
+    border: none;
 }
 
 /* ----- MAIN LAYOUT ----- */
@@ -181,14 +182,23 @@ main {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    overflow-wrap: anywhere;
 }
 
 /* ----- NEW TASK ----- */
 
-.main-section h1 {
+.title-group {
     font-size: 30px;
-    padding: 10px;
-    font-weight: normal;
+}
+
+#task-name {
+    border: none;
+    border-radius: 15px;
+    padding: 5px;
+    font-size: 25px;
+    background-color: var(--surface-color);
+    width: 425px;
+    outline: none;
 }
 
 .main-section label img {
