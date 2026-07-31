@@ -1,7 +1,6 @@
 import { getTasks } from "./storage.js";
 
-export function searchTasks(searchText) {
-    const tasks = getTasks();
+export function searchTasks(searchText, tasks, status, category, filter) {
     const lowerSearch = searchText.toLowerCase();
 
     return tasks.filter(task => task.name.toLowerCase().includes(lowerSearch));

@@ -10,22 +10,25 @@ const status = params.get("status");
 const category = params.get("category");
 const filter = params.get("filter");
 
+let tasks;
 if (status === "active" && category == "important") {
-    renderTasks(statusTasks(status, category));
+    tasks = statusTasks(status, category);
 } else if (status) {
-    renderTasks(statusTasks(status));
+    tasks = statusTasks(status)
 } else if (filter == "today") {
-    renderTasks(todayTasks(category));
+    tasks = todayTasks(category)
 } else if (category) {
-    renderTasks(categoryTasks(category));
+    tasks = categoryTasks(category);
 } else {
-    renderTasks(getTasks());
+    tasks = getTasks();
 }
+renderTasks(tasks);
 
 function handleSearch(event) {
     event.preventDefault();
+
     const searchInput = document.querySelector("#search-text").value;
-    const newTasks = searchTasks(searchInput);
+    const newTasks = searchTasks(searchInput, tasks, status, category, filter);
 
     clearTasks();
     renderTasks(newTasks);
