@@ -3,16 +3,10 @@ import { removeTask, getTaskById } from "./storage.js";
 const params = new URLSearchParams(window.location.search);
 const id = Number(params.get("id"));
 
-const form = document.querySelector("#details");
-form.addEventListener("submit", deleteTask);
+const deleteButton = document.querySelector("#delete-button");
+deleteButton.addEventListener("click", deleteTask);
 
-function deleteTask(event) {
-    event.preventDefault();
-
-    if (event.submitter.value !== "delete") {
-        return;
-    }
-
+function deleteTask() {
     const task = getTaskById(id);
 
     removeTask(task);
