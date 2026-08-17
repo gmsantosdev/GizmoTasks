@@ -49,10 +49,10 @@ To simplify task creation, reduce duplicated information, and keep task cards co
 
 # Decision 08
 
-Expired tasks will be automatically determined by comparing the current date with the due date.
+Expired tasks will be dynamically determined by comparing the current date and time with the task's due date and time.
 
 Reason:
-Prevents inconsistent data and ensures that task status is controlled by the application instead of the user.
+Prevents inconsistent data and avoids storing a temporary state that can become outdated.
 
 # Decision 09
 
@@ -77,21 +77,28 @@ Allows users to find expired tasks easily without removing them from the complet
 
 # Decision 12
 
-Task category and task status are different concepts.
+Task categories, task status, and task states are different concepts.
 
 Reason:
-Categories organize tasks by priority, while status represents the current lifecycle of the task.
+Categories organize tasks by priority, status represents the task lifecycle, and states such as Today and Expired are derived dynamically from task data.
 
 # Decision 13
 
-Completed and expired tasks preserve their original category.
+Completed tasks preserve their original category, and expiration does not modify the task category.
 
 Reason:
-Allows tasks to return to their previous organization when their status changes.
+Keeps task organization independent from the task's lifecycle and due date.
 
 # Decision 14
 
-The Today status is calculated automatically from the due date instead of being stored.
+The Today state is calculated automatically from the due date instead of being stored.
 
 Reason:
 Prevents outdated information and keeps the task list synchronized with the current date.
+
+# Decision 15
+
+Expired is a dynamically calculated task state rather than a stored task status.
+
+Reason:
+The expired state depends on the current date and time, so storing it could create inconsistent data when time passes.

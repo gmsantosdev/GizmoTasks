@@ -2,7 +2,7 @@
 
 ## Rule 01
 
-A task becomes expired automatically when the current date is later than its due date.
+A task is considered expired when the current date and time are later than its due date and time.
 
 ## Rule 02
 
@@ -14,7 +14,7 @@ Completed tasks remain editable.
 
 ## Rule 04
 
-Expired tasks remain editable.
+Tasks whose due date has passed remain editable.
 
 ## Rule 05
 
@@ -31,10 +31,6 @@ Only tasks that are not already completed can be marked as completed.
 ## Rule 08
 
 Completed tasks can be marked as active again.
-
-## Rule 09
-
-Expired tasks automatically return to the appropriate status when their due date is updated.
 
 ## Rule 10
 
