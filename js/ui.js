@@ -1,24 +1,64 @@
-export function renderTaskDetails(task) {
+function isTaskExpired(task) {
+    if (task.status === "completed") {
+        return false;
+    }
+
+    const now = new Date();
+    const dueAt = task.dueAt;
+
+    if (dueAt.includes("T")) {
+        const dueDate = dueAt.slice(0, 10);
+        const dueTime = dueAt.slice(11, 16);
+
+        const today = now.toISOString().slice(0, 10);
+        const currentTime =
+            String(now.getHours()).padStart(2, "0") +
+            ":" +
+            String(now.getMinutes()).padStart(2, "0");
+
+        if (dueDate < today) {
+            return true;
+        }
+
+        if (dueDate === today && dueTime < currentTime) {
+            return true;
+        }
+
+        return false;
+    }
+
+    const today = now.toISOString().slice(0, 10);
+    return dueAt < today;
+}
+
+function getTaskDotClass(task) {
     const today = new Date().toISOString().slice(0, 10);
-    const taskDot = document.querySelectorAll(".task-dot");
-    if (task.status === "completed" || task.status === "expired") {
-        for (const dot of taskDot) {
-            dot.className = `task-dot ${task.status}`;
-        }
-    } else if (today === task.dueAt.slice(0, 10)) {
+
+    if (task.status === "completed") {
+        return "completed";
+    }
+
+    if (isTaskExpired(task)) {
+        return "expired";
+    }
+
+    if (today === task.dueAt.slice(0, 10)) {
         if (task.category === "important") {
-            for (const dot of taskDot) {
-                dot.className = `task-dot today-important`;
-            }
-        } else {
-            for (const dot of taskDot) {
-                dot.className = `task-dot today`;
-            }
+            return "today-important";
         }
-    } else {
-        for (const dot of taskDot) {
-            dot.className = `task-dot ${task.category}`;
-        }
+
+        return "today";
+    }
+
+    return task.category;
+}
+
+export function renderTaskDetails(task) {
+    const taskDot = document.querySelectorAll(".task-dot");
+    const dotClass = getTaskDotClass(task);
+
+    for (const dot of taskDot) {
+        dot.className = `task-dot ${dotClass}`;
     }
 
     const taskName = document.querySelector("#task-name");
@@ -31,6 +71,7 @@ export function renderTaskDetails(task) {
     taskCategory.value = task.category;
 
     const [date, time] = task.dueAt.split("T");
+
     const taskDate = document.querySelector("#task-date");
     const taskTime = document.querySelector("#task-time");
     taskDate.value = date;
@@ -40,108 +81,112 @@ export function renderTaskDetails(task) {
     taskProgress.value = task.progress;
 
     const taskStatus = document.querySelector("#task-status");
-    taskStatus.textContent = task.status[0].toUpperCase() + task.status.slice(1);
+
+    if (task.status === "completed") {
+        taskStatus.textContent = "Completed";
+    } else if (isTaskExpired(task)) {
+        taskStatus.textContent = "Expired";
+    } else {
+        taskStatus.textContent = "Active";
+    }
 
     const createdDateDetail = document.querySelector("#created-date");
-    createdDateDetail.textContent = `${task.createdAt.replace("T", ", at ").replace(/-/g, "/")}.`;
+    createdDateDetail.textContent =
+        `${task.createdAt.replace("T", ", at ").replace(/-/g, "/")}.`;
 
     const updatedDateDetail = document.querySelector("#updated-date");
+
     if (task.updatedAt === null) {
-        updatedDateDetail.textContent = `-`;
+        updatedDateDetail.textContent = "-";
     } else {
-        updatedDateDetail.textContent = `${task.updatedAt.replace("T", ", at ").replace(/-/g, "/")}.`;
+        updatedDateDetail.textContent =
+            `${task.updatedAt.replace("T", ", at ").replace(/-/g, "/")}.`;
     }
-    
+
     const dueDateDetail = document.querySelector("#due-date");
+
     if (!time) {
         dueDateDetail.textContent = `${date.replace(/-/g, "/")}.`;
     } else {
-        dueDateDetail.textContent = `${date.replace(/-/g, "/")}, at ${time}.`;
+        dueDateDetail.textContent =
+            `${date.replace(/-/g, "/")}, at ${time}.`;
     }
 
     const completedDateDetail = document.querySelector("#completed-date");
+
     if (task.completedAt === null) {
-        completedDateDetail.textContent = `-`;
+        completedDateDetail.textContent = "-";
     } else {
-        completedDateDetail.textContent = `${task.completedAt.replace("T", ", at ").replace(/-/g, "/")}.`;
+        completedDateDetail.textContent =
+            `${task.completedAt.replace("T", ", at ").replace(/-/g, "/")}.`;
     }
 
     const completeText = document.querySelector("#complete-text");
+
     if (task.status === "completed") {
-        completeText.textContent = `Mark as incomplete`;
+        completeText.textContent = "Mark as incomplete";
     } else {
-        completeText.textContent = `Mark as complete`;
+        completeText.textContent = "Mark as complete";
     }
 }
 
 export function updateStatusUI(task) {
-    const today = new Date().toISOString().slice(0, 10);
     const taskDot = document.querySelectorAll(".task-dot");
-    if (task.status === "completed" || task.status === "expired") {
-        for (const dot of taskDot) {
-            dot.className = `task-dot ${task.status}`;
-        }
-    } else if (today === task.dueAt.slice(0, 10)) {
-        if (task.category === "important") {
-            for (const dot of taskDot) {
-                dot.className = `task-dot today-important`;
-            }
-        } else {
-            for (const dot of taskDot) {
-                dot.className = `task-dot today`;
-            }
-        }
-    } else {
-        for (const dot of taskDot) {
-            dot.className = `task-dot ${task.category}`;
-        }
+    const dotClass = getTaskDotClass(task);
+
+    for (const dot of taskDot) {
+        dot.className = `task-dot ${dotClass}`;
     }
 
     const taskStatus = document.querySelector("#task-status");
-    taskStatus.textContent = task.status[0].toUpperCase() + task.status.slice(1);
+
+    if (task.status === "completed") {
+        taskStatus.textContent = "Completed";
+    } else if (isTaskExpired(task)) {
+        taskStatus.textContent = "Expired";
+    } else {
+        taskStatus.textContent = "Active";
+    }
 
     const completedDateDetail = document.querySelector("#completed-date");
+
     if (task.completedAt === null) {
-        completedDateDetail.textContent = `-`;
+        completedDateDetail.textContent = "-";
     } else {
-        completedDateDetail.textContent = `${task.completedAt.replace("T", ", at ").replace(/-/g, "/")}.`;
+        completedDateDetail.textContent =
+            `${task.completedAt.replace("T", ", at ").replace(/-/g, "/")}.`;
     }
 
     const completeText = document.querySelector("#complete-text");
+
     if (task.status === "completed") {
-        completeText.textContent = `Mark as incomplete`;
+        completeText.textContent = "Mark as incomplete";
     } else {
-        completeText.textContent = `Mark as complete`;
+        completeText.textContent = "Mark as complete";
     }
 }
 
 function renderTask(task) {
     const container = document.querySelector(".task-list");
     const card = document.createElement("li");
+
     const cardLink = document.createElement("a");
     cardLink.href = `task-details.html?id=${task.id}`;
 
     const title = document.createElement("h2");
+
     const titleSpan1 = document.createElement("span");
     titleSpan1.textContent = "● ";
 
-    const today = new Date().toISOString().slice(0, 10);
-    if (task.status !== "active") {
-        titleSpan1.className = `${task.status} dot`;
-    } else if (today === task.dueAt.slice(0, 10)) {
-        if (task.category === "important") {
-            titleSpan1.className = `today-important dot`;
-        } else {
-            titleSpan1.className = `today dot`;
-        }
-    } else {
-        titleSpan1.className = `${task.category} dot`;
-    }
+    const dotClass = getTaskDotClass(task);
+    titleSpan1.className = `${dotClass} dot`;
+
     const titleSpan2 = document.createElement("span");
     titleSpan2.textContent = task.name;
 
     const taskAbstract = document.createElement("p");
     const maxLength = 100;
+
     let abstract = task.summary;
 
     if (abstract.length > maxLength) {
@@ -173,4 +218,9 @@ export function clearTasks() {
 export function renderPercentage(percentage) {
     const rangeSpan = document.querySelector("#range-span");
     rangeSpan.textContent = `${percentage}%`;
+}
+
+export function renderPreferences(preferences) {
+    document.querySelector("#light-theme").checked = preferences.theme === "light";
+    document.querySelector("#dark-theme").checked = preferences.theme === "dark";
 }

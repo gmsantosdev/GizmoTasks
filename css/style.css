@@ -11,6 +11,7 @@ a {
 
 body {
     background-color: var(--background-color);
+    color: var(--text-color);
     font-family: var(--font-primary);
     min-height: 100vh;
     display: flex;
@@ -20,6 +21,8 @@ body {
 textarea {
     resize: none;
 }
+
+
 
 /* ----- HEADER ----- */
 
@@ -50,6 +53,11 @@ header {
     height: 30px;
     font-size: 15px;
     outline: none;
+    color: var(--text-color);
+}
+
+#search input::placeholder {
+    color: var(--smooth-text-color);
 }
 
 #searchIcon {
@@ -67,10 +75,12 @@ header {
     height: 50px;
     gap: 20px;
     font-family: var(--font-logo);
+    color: var(--text-color);
 }
 
 .icon {
     height: 40px;
+    filter: var(--icons-color);
 }
 
 #menu {
@@ -111,6 +121,7 @@ main {
     display: flex;
     align-items: center;
     gap: 20px;
+    color: var(--text-color);
 }
 
 /* ----- MAIN SECTION ----- */
@@ -120,6 +131,14 @@ main {
     border-top-left-radius: 30px;
     flex: 1;
     padding: 20px;
+    color: var(--text-color);
+}
+
+.main-section h1 {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    color: var(--text-color);
 }
 
 /* ----- DOTS CUSTOMIZATION ----- */
@@ -183,6 +202,7 @@ main {
     flex-direction: column;
     gap: 20px;
     overflow-wrap: anywhere;
+    color: var(--text-color);
 }
 
 /* ----- NEW TASK ----- */
@@ -199,16 +219,21 @@ main {
     background-color: var(--surface-color);
     width: 425px;
     outline: none;
+    color: var(--text-color);
+}
+#task-name::placeholder {
+    color: var(--smooth-text-color);
 }
 
 .main-section label img {
     height: 25px;
 }
 
-#create, #details {
+#create, #details, #settings {
     background-color: var(--background-color);
     border-radius: 20px;
     padding: 20px;
+    color: var(--text-color);
 }
 
 .form-group {
@@ -216,6 +241,7 @@ main {
     flex-direction: column;
     padding: 10px;
     gap: 5px;
+    color: var(--text-color);
 }
 
 .form-group label {
@@ -244,12 +270,17 @@ main {
     width: 170px;
 }
 
-.form-group input[type="text"], .form-group textarea {
+.form-group textarea {
     border: none;
     padding: 15px;
     background-color: var(--surface-color);
     border-radius: 20px;
     outline: none;
+    color: var(--text-color);
+}
+
+.form-group textarea::placeholder {
+    color: var(--smooth-text-color);
 }
 
 .form-group textarea {
@@ -269,6 +300,7 @@ main {
     width: 150px;
     cursor: pointer;
     outline: none;
+    color: var(--text-color);
 }
 
 .triple-group p {
@@ -299,6 +331,7 @@ main {
     gap: 10px;
     font-size: 15px;
     width: 150px;
+    color: var(--text-color);
 }
 
 .submit-buttons img {
@@ -328,6 +361,7 @@ main {
 }
 
 .submit-buttons button {
+    background-color: var(--background-color);
     width: 150px;;
     display: flex;
     border: none;
@@ -335,6 +369,7 @@ main {
     align-items: center;
     font-size: 15px;
     cursor: pointer;
+    color: var(--text-color);
 }
 
 /* ----- TASK DETAILS ----- */
@@ -355,4 +390,60 @@ main {
     flex-direction: column;
     gap: 8px;
     justify-content: flex-end;
+}
+
+/* ----- SETTINGS ----- */
+
+#settings {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 40px;
+}
+
+#settings div h2 {
+    color: var(--text-color);
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.options-group {
+    display: flex;
+    gap: 60px;
+}
+
+.setting-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: var(--text-color);
+}
+
+.option-settings {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.option-settings div {
+    display: flex;
+    gap: 10px;
+}
+
+.option-settings input {
+    width: 20px;
+    height: 20px;
+    accent-color: var(--text-color);  
+}
+
+.about {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    color: var(--text-color);
+}
+
+.about a {
+    color: var(--text-color);
 }

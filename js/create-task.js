@@ -1,7 +1,9 @@
 import { createTask } from "./task.js";
 import { saveTask, generateId } from "./storage.js";
 import { setMinDate, setMinTime } from "./date-utils.js";
+import { applyPreferences } from "./preferences-ui.js";
 
+applyPreferences();
 const dateInput = document.querySelector("#task-date");
 setMinTime(dateInput);
 dateInput.addEventListener("input", handleDate);

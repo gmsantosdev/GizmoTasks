@@ -1,3 +1,5 @@
+import { defaultPreferences } from "./preferences.js";
+
 export function getTasks() {
     let tasks = JSON.parse(localStorage.getItem("tasks"));
 
@@ -62,4 +64,18 @@ export function removeTask(task) {
     }
 
     localStorage.setItem("tasks", JSON.stringify(allTasks));
+}
+
+export function savePreferences(preferences) {
+    localStorage.setItem("preferences", JSON.stringify(preferences));
+}
+
+export function getPreferences() {
+    const preferences = localStorage.getItem("preferences");
+
+    if (!preferences) {
+        return defaultPreferences;
+    }
+
+    return JSON.parse(preferences);
 }

@@ -1,6 +1,9 @@
 import { getTasks } from "./storage.js";
 import { renderTasks, clearTasks } from "./ui.js";
 import { searchTasks, statusTasks, categoryTasks, todayTasks } from "./taskService.js";
+import { applyPreferences } from "./preferences-ui.js";
+
+applyPreferences();
 
 const searchInput = document.querySelector("#search-text");
 searchInput.addEventListener("input", handleSearch);
@@ -15,7 +18,7 @@ if (status === "active" && category == "important") {
     tasks = statusTasks(status, category);
 } else if (status) {
     tasks = statusTasks(status)
-} else if (filter == "today") {
+} else if (filter === "today") {
     tasks = todayTasks(category)
 } else if (category) {
     tasks = categoryTasks(category);

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GizmoTasks</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <img src="assets/icons/menu.png" alt="Menu icon" id="menu" class="icon">
+            <a href="index.html" class="aLogo"><img src="assets/images/icon-Black.png" alt="GizmoTasks logo" class="icon"><span>GizmoTasks</span></a>
+
+            <form action="" id="search">
+                <button type="submit"><img class="icon" src="assets/icons/search-task.png" alt="Search button icon" id="searchIcon"></button>
+                <input type="text" placeholder="Search tasks...">
+            </form>
+        </div>
+
+        <a href="settings.html"><img class="icon" src="assets/icons/settings.png" alt="Settings icon"></a>
+    </header>
+    <main>
+        <nav class="sidebar">
+            <ul>
+                <li><a href="index.html"><img class="icon" src="assets/icons/all-tasks.png" alt="All tasks icon"><span>All tasks</span></a></li>
+                <li><a href="create-task.html"><img class="icon" src="assets/icons/new-task.png" alt="New task icon"><span>Create task</span></a></li>
+            </ul>
+            <ul>
+                <li><a href="index.html?status=active"><img class="icon"src="assets/icons/default-task.png" alt="Default task icon"><span>Default tasks</span></a></li>
+                <li><a href="index.html?filter=today"><img class="icon" src="assets/icons/today-task.png" alt="Today tasks icon"><span>Today tasks</span></a></li>
+                <li><a href="index.html?filter=today&category=important"><img class="icon" src="assets/icons/today-important.png" alt="Today important icon"><span>Today important tasks</span></a></li>
+                <li><a href="index.html?category=important"><img class="icon" src="assets/icons/important-task.png" alt="Important icon"><span>Important tasks</span></a></li>
+                <li><a href="index.html?status=completed"><img class="icon" src="assets/icons/completed-task.png" alt="Completed icon"><span>Completed tasks</span></a></li>
+                <li><a href="index.html?status=expired"><img class="icon" src="assets/icons/expired-task.png" alt="Expired icon"><span>Expired tasks</span></a></li>
+            </ul>
+        </nav>
+
+        <section class="main-section">
+            <h1><img class="icon" src="assets/icons/settings.png" alt="Settings icon"> <span>Settings</span></h1>
+
+            <form id="settings">
+                <div class="setting-group">
+                    <h2><img class="icon" src="assets/icons/appearance.png" alt="appearance icon"> <span>Appearance</span></h2>
+                    
+                    <div class="options-group">
+                        <div class="option-settings">
+                            <h3>Theme</h3>
+
+                            <div>
+                                <input type="radio" name="theme-settings" id="light-theme">
+                                <label for="light-theme">Light</label>
+                            </div>
+                            <div>
+                                <input type="radio" name="theme-settings" id="dark-theme">
+                                <label for="dark-theme">Dark</label>
+                            </div>
+                        </div>
+                        <div class="option-settings">
+                            <h3>Font size</h3>
+
+                            <div>
+                                <input type="radio" name="font-settings" id="small-font"> 
+                                <label for="small-font">Small</label>
+                            </div>
+                            <div>
+                                <input type="radio" name="font-settings" id="medium-font"> 
+                                <label for="medium-font">Medium</label>
+                            </div>
+                            <div>
+                                <input type="radio" name="font-settings" id="big-font">
+                                <label for="big-font">Big</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="setting-group">
+                    <h2><img class="icon" src="assets/icons/date-time.png" alt="Date and time icon"> <span>Date and time</span></h2>
+
+                    <div class="options-group">
+                        <div class="option-settings">
+                            <h3>Date format</h3>
+
+                            <div>
+                                <input type="radio" name="date-format-settings" id="us-date-format"> 
+                                <label for="us-date-format">MM/DD/YYYY</label>
+                            </div>
+                            <div>
+                                <input type="radio" name="date-format-settings" id="intl-date-format"> 
+                                <label for="intl-date-format">DD/MM/YYYY</label>
+                            </div>
+                            <div>
+                                <input type="radio" name="date-format-settings" id="iso-date-format"> 
+                                <label for="iso-date-format">YYYY/MM/DD</label>
+                            </div>
+                        </div>
+                        <div class="option-settings">
+                            <h3>Time format</h3>
+
+                            <div>
+                                <input type="radio" name="hour-format-settings" id="12-hour-format"> 
+                                <label for="12-hour-format">12-hour (Ex.: 01:45 PM)</label>
+                            </div>
+                            <div>
+                                <input type="radio" name="hour-format-settings" id="24-hour-format"> 
+                                <label for="24-hour-format">24-hour (Ex.: 13:45)</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about">
+                    <h2><img class="icon" src="assets/icons/about.png" alt="About icon"> <span>About GizmoTasks</span></h2>
+                    
+                    <p>Version: <br> 1.0</p>
+                    <p>Developer: <br> Guilherme Martins</p>
+                    <p>Repository: <br>
+                       <a href="https://github.com/gmsantosdev/GizmoTasks" target="_blank">
+                            https://github.com/gmsantosdev/GizmoTasks
+                       </a>
+                    </p>
+                </div>
+            </form>
+        </section>
+    </main>
+    <script type="module" src="js/settings.js"></script>
+</body>
+</html>
