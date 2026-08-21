@@ -68,6 +68,13 @@ header {
     margin-left: 5px;
 }
 
+#search button {
+    border: none;
+    background-color: var(--surface-color);
+    cursor: pointer;
+    margin-left: 5px;
+}
+
 .aLogo {
     display: flex;
     align-items: center;

@@ -1,40 +1,45 @@
 import { getTasks } from "./storage.js";
 
-export function searchTasks(searchText, tasks) {
-    const lowerSearch = searchText.toLowerCase();
+function isTaskExpired(task) {
+    if (task.status === "completed") {
+        return false;
+    }
 
-    return tasks.filter(task => task.name.toLowerCase().includes(lowerSearch));
-}
+    const now = new Date();
+    const today = now.toISOString().slice(0, 10);
 
-export function statusTasks(status, category) {
-    const tasks = getTasks();
+    const dueDate = task.dueAt.slice(0, 10);
 
-    const today = new Date().toISOString().slice(0, 10);
+    if (dueDate < today) {
+        return true;
+    }
 
-    if (status === "expired") {
-        const now = new Date();
-        const todayTime =
+    if (dueDate === today && task.dueAt.includes("T")) {
+        const currentTime =
             String(now.getHours()).padStart(2, "0") +
             ":" +
             String(now.getMinutes()).padStart(2, "0");
 
-        return tasks.filter(task => {
-            if (task.status === "completed") {
-                return false;
-            }
+        return task.dueAt.slice(11, 16) < currentTime;
+    }
 
-            const dueDate = task.dueAt.slice(0, 10);
+    return false;
+}
 
-            if (dueDate < today) {
-                return true;
-            }
+export function searchTasks(searchText, tasks) {
+    const lowerSearch = searchText.toLowerCase();
 
-            if (dueDate === today && task.dueAt.includes("T")) {
-                return task.dueAt.slice(11, 16) < todayTime;
-            }
+    return tasks.filter(task =>
+        task.name.toLowerCase().includes(lowerSearch)
+    );
+}
 
-            return false;
-        });
+export function statusTasks(status, category) {
+    const tasks = getTasks();
+    const today = new Date().toISOString().slice(0, 10);
+
+    if (status === "expired") {
+        return tasks.filter(task => isTaskExpired(task));
     }
 
     if (!category) {
@@ -43,12 +48,12 @@ export function statusTasks(status, category) {
             task.category !== "important" &&
             task.dueAt.slice(0, 10) !== today
         );
-    } else {
-        return tasks.filter(task =>
-            task.status === status &&
-            task.category !== category
-        );
     }
+
+    return tasks.filter(task =>
+        task.status === status &&
+        task.category !== category
+    );
 }
 
 export function categoryTasks(category) {
@@ -58,15 +63,17 @@ export function categoryTasks(category) {
 
     return tasks.filter(task =>
         task.category === category &&
-        task.dueAt.slice(0, 10) !== today
+        task.dueAt.slice(0, 10) !== today &&
+        !isTaskExpired(task)
     );
 }
 
 export function todayTasks(category) {
     const tasks = getTasks();
-    const now = new Date();
 
+    const now = new Date();
     const today = now.toISOString().slice(0, 10);
+
     const todayTime =
         String(now.getHours()).padStart(2, "0") +
         ":" +
@@ -78,10 +85,10 @@ export function todayTasks(category) {
                 return task.category === category &&
                     task.dueAt.slice(0, 10) === today &&
                     task.dueAt.slice(11, 16) >= todayTime;
-            } else {
-                return task.category === category &&
-                    task.dueAt.slice(0, 10) === today;
             }
+
+            return task.category === category &&
+                task.dueAt.slice(0, 10) === today;
         });
     }
 
@@ -90,9 +97,9 @@ export function todayTasks(category) {
             return task.category !== "important" &&
                 task.dueAt.slice(0, 10) === today &&
                 task.dueAt.slice(11, 16) >= todayTime;
-        } else {
-            return task.category !== "important" &&
-                task.dueAt.slice(0, 10) === today;
         }
+
+        return task.category !== "important" &&
+            task.dueAt.slice(0, 10) === today;
     });
 }

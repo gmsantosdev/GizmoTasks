@@ -12,6 +12,7 @@ const params = new URLSearchParams(window.location.search);
 const status = params.get("status");
 const category = params.get("category");
 const filter = params.get("filter");
+const search = params.get("search");
 
 let tasks;
 if (status === "active" && category == "important") {
@@ -25,7 +26,13 @@ if (status === "active" && category == "important") {
 } else {
     tasks = getTasks();
 }
-renderTasks(tasks);
+
+if (search) {
+    const newTasks = searchTasks(search, tasks);
+    renderTasks(newTasks, search);
+} else {
+    renderTasks(tasks);
+}
 
 function handleSearch(event) {
     event.preventDefault();

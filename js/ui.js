@@ -204,9 +204,14 @@ function renderTask(task) {
     container.append(card);
 }
 
-export function renderTasks(tasks) {
+export function renderTasks(tasks, search) {
     for (const task of tasks) {
         renderTask(task);
+    }
+
+    if (search) {
+        const searchInput = document.querySelector("#search-text");
+        searchInput.value = search;
     }
 }
 
