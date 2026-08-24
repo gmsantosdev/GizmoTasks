@@ -6,4 +6,5 @@ export function applyPreferences() {
     const root = document.documentElement;
     
     root.setAttribute("data-theme", preferences.theme);
+    root.setAttribute("data-font-size", preferences.fontSize);
 }

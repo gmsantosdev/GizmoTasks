@@ -16,12 +16,12 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    font-size: var(--font-size);
 }
 
 textarea {
     resize: none;
 }
-
 
 
 /* ----- HEADER ----- */
@@ -36,6 +36,7 @@ header {
     display: flex;
     align-items: center;
     gap: 25px;
+    font-size: 1px;
 }
 
 #search {
@@ -51,17 +52,13 @@ header {
     background-color: var(--surface-color);
     width: 600px;
     height: 30px;
-    font-size: 15px;
+    font-size: var(--font-size);
     outline: none;
     color: var(--text-color);
 }
 
 #search input::placeholder {
     color: var(--smooth-text-color);
-}
-
-#searchIcon {
-    height: 25px;
 }
 
 #search div {
@@ -75,10 +72,15 @@ header {
     margin-left: 5px;
 }
 
+.logo {
+    height: var(--logo-size);
+    filter: var(--icons-color);
+}
+
 .aLogo {
     display: flex;
     align-items: center;
-    font-size: 25px;
+    font-size: var(--title-size);
     height: 50px;
     gap: 20px;
     font-family: var(--font-logo);
@@ -86,8 +88,12 @@ header {
 }
 
 .icon {
-    height: 40px;
+    height: var(--icon-height);
     filter: var(--icons-color);
+}
+
+.settings-icon {
+    margin-right: 10px;
 }
 
 #menu {
@@ -120,8 +126,8 @@ main {
 }
 
 .sidebar ul li img {
-    height: 33px;
-    width: 30px;
+    height: var(--icon-height);
+    width: var(--icon-width);
 }
 
 .sidebar ul li a {
@@ -151,7 +157,7 @@ main {
 /* ----- DOTS CUSTOMIZATION ----- */
 
 .dot {
-    font-size: 20px;
+    font-size: var(--dot-size);
 }
 .important {
     color: var(--important-color);
@@ -200,7 +206,7 @@ main {
 
 .task-list li a {
     background-color: var(--background-color);
-    font-size: 12px;
+    font-size: var(--text-size);
     border-radius: 20px;
     padding: 20px;
     width: 380px;
@@ -222,7 +228,7 @@ main {
     border: none;
     border-radius: 15px;
     padding: 5px;
-    font-size: 25px;
+    font-size: var(--title-size);
     background-color: var(--surface-color);
     width: 425px;
     outline: none;
@@ -230,10 +236,6 @@ main {
 }
 #task-name::placeholder {
     color: var(--smooth-text-color);
-}
-
-.main-section label img {
-    height: 25px;
 }
 
 #create, #details, #settings {
@@ -256,6 +258,7 @@ main {
     align-items: center;
     gap: 10px;
     font-size: 25px;
+    font-size: var(--title-size);
 }
 
 .date-time {
@@ -269,12 +272,9 @@ main {
     gap: 8px;
 }
 
-.date-field label {
-    font-size: 18px;
-}
-
 .date-field input {
     width: 170px;
+    font-size: var(--text-size);
 }
 
 .form-group textarea {
@@ -284,6 +284,7 @@ main {
     border-radius: 20px;
     outline: none;
     color: var(--text-color);
+    font-size: var(--text-size);
 }
 
 .form-group textarea::placeholder {
@@ -292,6 +293,10 @@ main {
 
 .form-group textarea {
     height: 150px;
+}
+
+.form-group select {
+    font-size: var(--text-size);
 }
 
 .triple-group {
@@ -336,14 +341,14 @@ main {
     display: flex;
     align-items: center;
     gap: 10px;
-    font-size: 15px;
+    font-size: var(--font-size);
     width: 150px;
     color: var(--text-color);
 }
 
 .submit-buttons img {
-    width: 35px;
-    height: 30px;
+    width: var(--icon-width);
+    height: var(--icon-height);
 }
 
 .image-background {
@@ -374,7 +379,7 @@ main {
     border: none;
     gap: 10px;
     align-items: center;
-    font-size: 15px;
+    font-size: var(--font-size);
     cursor: pointer;
     color: var(--text-color);
 }

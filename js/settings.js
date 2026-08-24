@@ -21,5 +21,17 @@ function handleRadio(event) {
         root.setAttribute("data-theme", "dark");
         preferences.theme = "dark";
         savePreferences(preferences);
+    } else if (radioClicked.id === "small-font") {
+        root.setAttribute("data-font-size", "small");
+        preferences.fontSize = "small";
+        savePreferences(preferences);
+    } else if (radioClicked.id === "medium-font") {
+        root.setAttribute("data-font-size", "medium");
+        preferences.fontSize = "medium";
+        savePreferences(preferences);
+    } else if (radioClicked.id === "big-font") {
+        root.setAttribute("data-font-size", "big");
+        preferences.fontSize = "big";
+        savePreferences(preferences);
     }
 }

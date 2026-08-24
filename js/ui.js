@@ -228,4 +228,7 @@ export function renderPercentage(percentage) {
 export function renderPreferences(preferences) {
     document.querySelector("#light-theme").checked = preferences.theme === "light";
     document.querySelector("#dark-theme").checked = preferences.theme === "dark";
+    document.querySelector("#small-font").checked = preferences.fontSize === "small";
+    document.querySelector("#medium-font").checked = preferences.fontSize === "medium";
+    document.querySelector("#big-font").checked = preferences.fontSize === "big";
 }
