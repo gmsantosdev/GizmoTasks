@@ -13,6 +13,11 @@ export function setMinDate() {
     dateInput.min = today;
 }
 
+export function setMaxDate() {
+    const dateInput = document.querySelector("#task-date");
+    dateInput.max = "9999-12-31";
+}
+
 export function setMinTime(dateInput) {
     const timeInput = document.querySelector("#task-time");
     const today = new Date().toISOString().slice(0, 10);

@@ -1,6 +1,7 @@
 import { createTask } from "./task.js";
-import { getTaskById, updateTask } from "./storage.js";
-import { updateStatusUI } from "./ui.js";
+import { getPreferences, getTaskById, updateTask } from "./storage.js";
+import { formatDate, updateStatusUI } from "./ui.js";
+
 
 const params = new URLSearchParams(window.location.search);
 const id = Number(params.get("id"));
@@ -24,29 +25,25 @@ function completeTask(event) {
         progress,
         dueAt,
         createdAt,
-        updatedAt
     } = task;
 
     let {
         status,
-        completedAt
+        completedAt,
+        updatedAt
     } = task;
 
     const now = new Date();
 
-    if (status === "active" || status === "expired") {
+    if (status === "active") {
         status = "completed";
         completedAt = now.getFullYear() + "-" + String(now.getMonth() + 1).padStart(2, "0") + "-" + String(now.getDate()).padStart(2, "0") + "T" + String(now.getHours()).padStart(2, "0") + ":" + String(now.getMinutes()).padStart(2, "0");
+        updatedAt = null;
     } else {
-        const dueDate = new Date(dueAt);
-
-        if (now >= dueDate) {
-            status = "expired";
-        } else {
-            status = "active";
-        }
-        completedAt = null
-    }
+        status = "active";
+        completedAt = null;
+        updatedAt = now.getFullYear() + "-" + String(now.getMonth() + 1).padStart(2, "0") + "-" + String(now.getDate()).padStart(2, "0") + "T" + String(now.getHours()).padStart(2, "0") + ":" + String(now.getMinutes()).padStart(2, "0");
+    }   
 
     const updatedTask = createTask(id, name, summary, category, progress, status, dueAt, createdAt, updatedAt, completedAt);
     
@@ -58,5 +55,6 @@ function completeTask(event) {
     } else {
         alert("Task marked as expired.");
     }
-    updateStatusUI(updatedTask);
+    
+    updateStatusUI(updatedTask, getPreferences().dateFormat, getPreferences().timeFormat);
 }

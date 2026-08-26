@@ -1,6 +1,6 @@
 import { createTask } from "./task.js";
 import { saveTask, generateId } from "./storage.js";
-import { setMinDate, setMinTime } from "./date-utils.js";
+import { setMaxDate, setMinDate, setMinTime } from "./date-utils.js";
 import { applyPreferences } from "./preferences-ui.js";
 
 applyPreferences();
@@ -9,6 +9,7 @@ setMinTime(dateInput);
 dateInput.addEventListener("input", handleDate);
 
 setMinDate();
+setMaxDate();
 
 function handleDate() {
     setMinTime(dateInput);

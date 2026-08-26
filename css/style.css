@@ -150,6 +150,7 @@ main {
 .main-section h1 {
     display: flex;
     gap: 5px;
+    padding: 10px;
     align-items: center;
     color: var(--text-color);
 }

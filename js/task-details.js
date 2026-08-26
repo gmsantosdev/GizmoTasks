@@ -1,6 +1,6 @@
 import { getTaskById } from './storage.js';
 import { renderTaskDetails } from './ui.js';
-import { setMinDate, setMinTime } from "./date-utils.js";
+import { setMaxDate, setMinDate, setMinTime } from "./date-utils.js";
 
 const dateInput = document.querySelector("#task-date");
 dateInput.addEventListener("input", handleDate);
@@ -16,3 +16,4 @@ const task = getTaskById(id);
 setMinDate();
 renderTaskDetails(task);
 setMinTime(dateInput);
+setMaxDate();

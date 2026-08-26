@@ -16,22 +16,28 @@ function handleRadio(event) {
     if (radioClicked.id === "light-theme") {
         root.setAttribute("data-theme", "light");
         preferences.theme = "light";
-        savePreferences(preferences);
     } else if (radioClicked.id === "dark-theme") {
         root.setAttribute("data-theme", "dark");
         preferences.theme = "dark";
-        savePreferences(preferences);
     } else if (radioClicked.id === "small-font") {
         root.setAttribute("data-font-size", "small");
         preferences.fontSize = "small";
-        savePreferences(preferences);
     } else if (radioClicked.id === "medium-font") {
         root.setAttribute("data-font-size", "medium");
         preferences.fontSize = "medium";
-        savePreferences(preferences);
     } else if (radioClicked.id === "big-font") {
         root.setAttribute("data-font-size", "big");
         preferences.fontSize = "big";
-        savePreferences(preferences);
+    } else if (radioClicked.id === "us-date-format") {
+        preferences.dateFormat = "mm/dd/yyyy";
+    } else if (radioClicked.id === "intl-date-format") {
+        preferences.dateFormat = "dd/mm/yyyy";
+    } else if (radioClicked.id === "iso-date-format") {
+        preferences.dateFormat = "yyyy/mm/dd";
+    } else if (radioClicked.id === "12-hour-format") {
+        preferences.timeFormat = "12h";
+    } else if (radioClicked.id === "24-hour-format") {
+        preferences.timeFormat = "24h"
     }
+    savePreferences(preferences);
 }
