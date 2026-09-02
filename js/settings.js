@@ -3,7 +3,7 @@ import { getPreferences, savePreferences } from "./storage.js";
 import { renderPreferences } from "./ui.js";
 
 applyPreferences();
-renderPreferences(getPreferences())
+renderPreferences(getPreferences());
 
 const form = document.querySelector("#settings");
 form.addEventListener("input", handleRadio);

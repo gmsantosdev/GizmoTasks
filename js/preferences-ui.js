@@ -10,6 +10,7 @@ export function applyPreferences() {
     
     root.setAttribute("data-theme", preferences.theme);
     root.setAttribute("data-font-size", preferences.fontSize);
+    root.setAttribute("data-sidebar", preferences.sidebar);
 
     if (id) {
         formatDate(getTaskById(id), preferences.dateFormat);

@@ -82,3 +82,19 @@
     --icon-height: 35px;
     --icon-width: 40px;
 }
+
+html[data-sidebar="collapsed"] .sidebar {
+    width: 80px;
+}
+
+html[data-sidebar="collapsed"] .sidebar span {
+    display: none;
+}
+
+html[data-sidebar="expanded"] .sidebar {
+    width: 280px;
+}
+
+html[data-sidebar="expanded"] .sidebar span {
+    display: flex;
+}
