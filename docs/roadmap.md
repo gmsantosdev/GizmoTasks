@@ -34,3 +34,11 @@
 - Font size settings.
 - Collapsible sidebar.
 - Save user settings.
+
+# Sprint 05
+- UI hover and click transitions.
+- Active state for the selected sidebar option.
+- Basic responsive design.
+- Improved task editing mode.
+- Single "Edit" button to enter edit mode.
+- Save and cancel actions displayed only during edit mode.

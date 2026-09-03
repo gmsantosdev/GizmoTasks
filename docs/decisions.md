@@ -3,6 +3,7 @@
 The application will be entirely in English.
 
 Reason:
+
 To make the portfolio more professional and accessible.
 
 # Decision 02
@@ -10,6 +11,7 @@ To make the portfolio more professional and accessible.
 The sidebar will centralize task organization and navigation.
 
 Reason:
+
 Allows future scalability.
 
 # Decision 03
@@ -17,6 +19,7 @@ Allows future scalability.
 The application will use LocalStorage before introducing a database.
 
 Reason:
+
 Simplifies the MVP.
 
 # Decision 04
@@ -24,6 +27,7 @@ Simplifies the MVP.
 Task creation will require only essential information.
 
 Reason:
+
 To reduce problems during task creation and allow users to register ideas quickly.
 
 # Decision 05
@@ -31,13 +35,15 @@ To reduce problems during task creation and allow users to register ideas quickl
 The project will use Google Fonts to manage the fonts.
 
 Reason:
+
 To simplify font management during development and avoid storing local font files.
 
 # Decision 06
 
-Colors and font families will be centralized in `variables.css` using CSS Custom Properties (`:root`)
+Colors and font families will be centralized in `variables.css` using CSS Custom Properties (`:root`).
 
 Reason:
+
 To improve maintainability and support future theme implementation.
 
 # Decision 07
@@ -45,6 +51,7 @@ To improve maintainability and support future theme implementation.
 Task cards will automatically display a shortened version of the task summary instead of requiring a separate description field.
 
 Reason:
+
 To simplify task creation, reduce duplicated information, and keep task cards consistent.
 
 # Decision 08
@@ -52,6 +59,7 @@ To simplify task creation, reduce duplicated information, and keep task cards co
 Expired tasks will be dynamically determined by comparing the current date and time with the task's due date and time.
 
 Reason:
+
 Prevents inconsistent data and avoids storing a temporary state that can become outdated.
 
 # Decision 09
@@ -59,6 +67,7 @@ Prevents inconsistent data and avoids storing a temporary state that can become 
 Completed tasks can still be edited.
 
 Reason:
+
 Allows users to correct mistakes, update information, or reopen finished work without creating duplicate tasks.
 
 # Decision 10
@@ -66,6 +75,7 @@ Allows users to correct mistakes, update information, or reopen finished work wi
 Tasks cannot be created with a due date earlier than the current date.
 
 Reason:
+
 Prevents invalid task states and guarantees data consistency.
 
 # Decision 11
@@ -73,6 +83,7 @@ Prevents invalid task states and guarantees data consistency.
 Expired tasks will appear both in the "All Tasks" view and in the "Expired Tasks" category.
 
 Reason:
+
 Allows users to find expired tasks easily without removing them from the complete task list.
 
 # Decision 12
@@ -80,6 +91,7 @@ Allows users to find expired tasks easily without removing them from the complet
 Task categories, task status, and task states are different concepts.
 
 Reason:
+
 Categories organize tasks by priority, status represents the task lifecycle, and states such as Today and Expired are derived dynamically from task data.
 
 # Decision 13
@@ -87,6 +99,7 @@ Categories organize tasks by priority, status represents the task lifecycle, and
 Completed tasks preserve their original category, and expiration does not modify the task category.
 
 Reason:
+
 Keeps task organization independent from the task's lifecycle and due date.
 
 # Decision 14
@@ -94,6 +107,7 @@ Keeps task organization independent from the task's lifecycle and due date.
 The Today state is calculated automatically from the due date instead of being stored.
 
 Reason:
+
 Prevents outdated information and keeps the task list synchronized with the current date.
 
 # Decision 15
@@ -101,4 +115,29 @@ Prevents outdated information and keeps the task list synchronized with the curr
 Expired is a dynamically calculated task state rather than a stored task status.
 
 Reason:
+
 The expired state depends on the current date and time, so storing it could create inconsistent data when time passes.
+
+# Decision 16
+
+Task editing will use a single "Edit" button to switch the task details page from view mode to edit mode.
+
+Reason:
+
+Keeps the default task details interface clean while providing an explicit action to edit the entire task.
+
+# Decision 17
+
+Task changes will only be persisted when the user selects "Save".
+
+Reason:
+
+Prevents temporary or accidental changes from being stored before the user confirms them.
+
+# Decision 18
+
+Canceling task editing will discard unsaved changes and return the task to view mode on the same task details page.
+
+Reason:
+
+Allows users to abandon changes without losing their current context or being unnecessarily redirected to the task list.

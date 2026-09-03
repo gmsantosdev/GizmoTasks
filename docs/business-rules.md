@@ -2,7 +2,7 @@
 
 ## Rule 01
 
-A task is considered expired when the current date and time are later than its due date and time.
+A task is considered expired when the current date and time are later than its due date and time. Expiration is dynamically determined and is not stored as a task status.
 
 ## Rule 02
 
@@ -39,3 +39,11 @@ The Today status is generated automatically from the due date.
 ## Rule 11
 
 Changing a task status does not modify its category.
+
+## Rule 12
+
+Task changes made in edit mode are only applied to the stored task when the user saves the changes.
+
+## Rule 13
+
+Canceling task editing discards the unsaved changes and returns the task to its previous state.
