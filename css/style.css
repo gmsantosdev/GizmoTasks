@@ -70,6 +70,11 @@ header {
     background-color: var(--surface-color);
     cursor: pointer;
     margin-left: 5px;
+    transition: transform 0.2s ease;
+}
+
+#search button:hover {
+    transform: scale(1.1);
 }
 
 .logo {
@@ -87,6 +92,16 @@ header {
     color: var(--text-color);
 }
 
+.aLogo span {
+    padding: 6px;
+    border-radius: 15px;
+    transition: background-color 0.2s ease;
+}
+
+.aLogo span:hover {
+    background-color: var(--surface-color);
+}
+
 .icon {
     height: var(--icon-height);
     filter: var(--icons-color);
@@ -94,13 +109,26 @@ header {
 
 .settings-icon {
     margin-right: 10px;
+    border-radius: 10px;
+    padding: 4px;
+    transition: background-color 0.2s ease;
+}
+
+.settings-icon:hover {
+    background-color: var(--surface-color);
 }
 
 .menu-button {
     background-color: var(--background-color);
-    border: none;
     margin-left: 18px;
     cursor: pointer;
+    border-radius: 10px;
+    border: none;
+    transition: background-color 0.2s ease;
+}
+
+.menu-button:hover {
+    background-color: var(--surface-color);
 }
 
 .menu-button img {
@@ -141,6 +169,20 @@ main {
     align-items: center;
     gap: 20px;
     color: var(--text-color);
+    padding: 8px;
+    margin: -5px;
+    border-radius: 10px;
+    transition: transform 0.15s ease, opacity 0.15s ease, background-color 0.15s ease;
+}
+
+.sidebar ul li a:hover {
+    transform: translateX(5px);
+    opacity: 0.7;
+    background-color: var(--surface-color);
+}
+
+.sidebar ul li a.active-sidebar {
+    background-color: var(--surface-color);
 }
 
 /* ----- MAIN SECTION ----- */
@@ -223,6 +265,11 @@ main {
     gap: 20px;
     overflow-wrap: anywhere;
     color: var(--text-color);
+    transition: transform 0.2s ease;
+}
+
+.task-list li a:hover {
+    transform: scale(1.05);
 }
 
 /* ----- NEW TASK ----- */
@@ -351,6 +398,7 @@ main {
     font-size: var(--font-size);
     width: 150px;
     color: var(--text-color);
+    transition: transform 0.2s ease;
 }
 
 .submit-buttons img {
@@ -389,6 +437,12 @@ main {
     font-size: var(--font-size);
     cursor: pointer;
     color: var(--text-color);
+    transition: transform 0.2s ease;
+}
+
+.submit-buttons a:hover,
+.submit-buttons button:hover {
+    transform: scale(1.05);
 }
 
 /* ----- TASK DETAILS ----- */
@@ -453,7 +507,12 @@ main {
 .option-settings input {
     width: 20px;
     height: 20px;
-    accent-color: var(--text-color);  
+    accent-color: var(--text-color);
+    transition: transform 0.2s ease;
+}
+
+.option-settings input:hover {
+    transform: scale(1.3);
 }
 
 .about {
