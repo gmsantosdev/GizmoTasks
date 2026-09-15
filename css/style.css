@@ -41,7 +41,7 @@ header {
 
 #search {
     display: flex;
-    padding: 5px;
+    padding: 2px;
     gap: 10px;
     background-color: var(--surface-color);
     border-radius: 15px;
@@ -90,6 +90,7 @@ header {
     gap: 20px;
     font-family: var(--font-logo);
     color: var(--text-color);
+    margin-left: 20px;
 }
 
 .aLogo span {
@@ -253,6 +254,11 @@ main {
     flex-wrap: wrap;
 }
 
+.task-list li {
+    max-width: 100%;
+    min-width: 0;
+}
+
 .task-list li a {
     background-color: var(--background-color);
     font-size: var(--text-size);
@@ -263,9 +269,21 @@ main {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    min-width: 0;
+    overflow: hidden;
     overflow-wrap: anywhere;
     color: var(--text-color);
     transition: transform 0.2s ease;
+}
+
+.task-list li a p {
+    min-width: 0;
+    overflow: hidden;
+    overflow-wrap: anywhere;
+
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
 }
 
 .task-list li a:hover {
@@ -288,6 +306,7 @@ main {
     outline: none;
     color: var(--text-color);
 }
+
 #task-name::placeholder {
     color: var(--smooth-text-color);
 }
@@ -311,7 +330,6 @@ main {
     display: flex;
     align-items: center;
     gap: 10px;
-    font-size: 25px;
     font-size: var(--title-size);
 }
 
@@ -524,4 +542,171 @@ main {
 
 .about a {
     color: var(--text-color);
+}
+
+/* ----- RESPONSIVE LAYOUT ----- */
+
+@media (max-width: 1000px) {
+    header {
+        width: auto;
+        min-width: 0;
+    }
+
+    #search {
+        max-width: 100%;
+        min-width: 0;
+    }
+
+    #search input {
+        width: 280px;
+        max-width: 100%;
+    }
+
+    .main-section {
+        width: auto;
+        min-width: 0;
+        overflow: hidden;
+    }
+
+    .main-section h1 {
+        max-width: 100%;
+        overflow-wrap: anywhere;
+    }
+
+    .task-list {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .task-list li {
+        max-width: 100%;
+        min-width: 0;
+    }
+
+    .task-list li a {
+        width: 380px;
+        max-width: 100%;
+        min-width: 0;
+    }
+
+    .task-caption {
+        display: flex;
+        gap: 15px;
+        margin-left: 30px;
+        flex-wrap: wrap;
+    }
+
+    .triple-group, .final-details {
+        flex-direction: column;
+    }
+
+    .options-group {
+        gap: 20px;
+        flex-direction: column;
+    }
+
+    .about {
+        overflow-wrap: anywhere;
+    }
+
+    #task-name {
+        width: 370px;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    html[data-sidebar="expanded"] .sidebar {
+        width: 80px;
+    }
+
+    html[data-sidebar="expanded"] .sidebar span, .menu-button {
+        display: none;
+    }
+
+    .aLogo span {
+        display: none;
+    }
+
+    header {
+        width: auto;
+        min-width: 0;
+    }
+
+    .header-content {
+        min-width: 0;
+        gap: 10px;
+    }
+
+    #search {
+        max-width: 100%;
+        min-width: 0;
+    }
+
+    #search input {
+        width: 150px;
+        max-width: 100%;
+    }
+
+    .main-section {
+        width: auto;
+        min-width: 0;
+        overflow: hidden;
+    }
+
+    .main-section h1 {
+        max-width: 100%;
+        overflow-wrap: anywhere;
+    }
+
+    .task-list {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .task-list li {
+        max-width: 100%;
+        min-width: 0;
+    }
+
+    .task-list li a {
+        width: 200px;
+        max-width: 100%;
+        min-width: 0;
+    }
+
+    .task-caption {
+        display: flex;
+        gap: 15px;
+        margin-left: 30px;
+        flex-wrap: wrap;
+    }
+
+    .options-group {
+        gap: 20px;
+        flex-direction: column;
+    }
+
+    #settings {
+        padding: 20px;
+        max-width: 100%;
+    }
+
+    .about {
+        overflow-wrap: anywhere;
+    }
+
+    #task-name {
+        width: 140px;
+        max-width: 100%;
+    }
+
+    .triple-group, .final-details, .submit-buttons, .range-container, .date-time {
+        flex-direction: column;
+    }
+
+    [data-font-size="big"] {
+        --font-size: 17px;
+        --title-size: 23px;
+    }
 }
