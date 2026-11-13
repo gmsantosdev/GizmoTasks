@@ -10,7 +10,7 @@ function isTaskExpired(task) {
         const dueDate = dueAt.slice(0, 10);
         const dueTime = dueAt.slice(11, 16);
 
-        const today = now.toISOString().slice(0, 10);
+        const today = getLocalDate();
         const currentTime =
             String(now.getHours()).padStart(2, "0") +
             ":" +
@@ -27,12 +27,12 @@ function isTaskExpired(task) {
         return false;
     }
 
-    const today = now.toISOString().slice(0, 10);
+    const today = getLocalDate();
     return dueAt < today;
 }
 
 function getTaskDotClass(task) {
-    const today = new Date().toISOString().slice(0, 10);
+    const today = getLocalDate();
 
     if (task.status === "completed") {
         return "completed";
@@ -128,6 +128,7 @@ export function renderTaskDetails(task, date, time) {
         } else if (date === "yyyy/mm/dd") {
             return `${year}/${month}/${day}`;
         }
+        return `${day}/${month}/${year}`;
     }
 
     function formatTimeValue(value) {
@@ -195,12 +196,50 @@ export function updateStatusUI(task, date, time) {
     const updatedDateDetail = document.querySelectorAll(".updated-date");
     const completedDateDetail = document.querySelectorAll(".completed-date");
 
+    function formatDateValue(value) {
+        if (!value) return "-";
+
+        const [year, month, day] = value.slice(0, 10).split("-");
+
+        if (date === "mm/dd/yyyy") {
+            return `${month}/${day}/${year}`;
+        } else if (date === "dd/mm/yyyy") {
+            return `${day}/${month}/${year}`;
+        } else if (date === "yyyy/mm/dd") {
+            return `${year}/${month}/${day}`;
+        }
+
+        return `${day}/${month}/${year}`;
+    }
+
+    function formatTimeValue(value) {
+        if (!value || !value.includes("T")) return "";
+
+        const [hour, minute] = value.slice(11, 16).split(":");
+
+        if (time === "24h") {
+            return `, at ${hour}:${minute}`;
+        } else if (time === "12h") {
+            const numericHour = Number(hour);
+            const period = numericHour >= 12 ? "PM" : "AM";
+            const hour12 = numericHour % 12 || 12;
+
+            return `, at ${hour12}:${minute} ${period}`;
+        }
+
+        return "";
+    }
+
+    const updatedText = task.updatedAt ? formatDateValue(task.updatedAt) + formatTimeValue(task.updatedAt) : "-";
+
+    const completedText = task.completedAt ? formatDateValue(task.completedAt) + formatTimeValue(task.completedAt) : "-";
+
     updatedDateDetail.forEach(element => {
-        element.textContent = task.updatedAt || "-";
+        element.textContent = updatedText;
     });
 
     completedDateDetail.forEach(element => {
-        element.textContent = task.completedAt || "-";
+        element.textContent = completedText;
     });
 }
 
@@ -504,4 +543,14 @@ export function renderTaskView(task, dateFormat, timeFormat) {
 
     const progress = document.querySelector("#view-percentage");
     progress.textContent = `${task.progress}%`;
+}
+
+function getLocalDate() {
+    const now = new Date();
+
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, "0");
+    const day = String(now.getDate()).padStart(2, "0");
+
+    return `${year}-${month}-${day}`;
 }

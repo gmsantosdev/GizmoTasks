@@ -6,7 +6,7 @@ function isTaskExpired(task) {
     }
 
     const now = new Date();
-    const today = now.toISOString().slice(0, 10);
+    const today = getLocalDate();
 
     const dueDate = task.dueAt.slice(0, 10);
 
@@ -36,7 +36,7 @@ export function searchTasks(searchText, tasks) {
 
 export function statusTasks(status, category) {
     const tasks = getTasks();
-    const today = new Date().toISOString().slice(0, 10);
+    const today = getLocalDate();
 
     if (status === "expired") {
         return tasks.filter(task => isTaskExpired(task));
@@ -46,7 +46,8 @@ export function statusTasks(status, category) {
         return tasks.filter(task =>
             task.status === status &&
             task.category !== "important" &&
-            task.dueAt.slice(0, 10) !== today
+            task.dueAt.slice(0, 10) !== today &&
+            !isTaskExpired(task)
         );
     }
 
@@ -59,9 +60,10 @@ export function statusTasks(status, category) {
 export function categoryTasks(category) {
     const tasks = getTasks();
 
-    const today = new Date().toISOString().slice(0, 10);
+    const today = getLocalDate();
 
     return tasks.filter(task =>
+        task.status === "active" &&
         task.category === category &&
         task.dueAt.slice(0, 10) !== today &&
         !isTaskExpired(task)
@@ -72,7 +74,7 @@ export function todayTasks(category) {
     const tasks = getTasks();
 
     const now = new Date();
-    const today = now.toISOString().slice(0, 10);
+    const today = getLocalDate();
 
     const todayTime =
         String(now.getHours()).padStart(2, "0") +
@@ -82,24 +84,38 @@ export function todayTasks(category) {
     if (category) {
         return tasks.filter(task => {
             if (task.dueAt.includes("T")) {
-                return task.category === category &&
+                return task.status === "active" && 
+                    task.category === category &&
                     task.dueAt.slice(0, 10) === today &&
                     task.dueAt.slice(11, 16) >= todayTime;
             }
 
-            return task.category === category &&
+            return task.status === "active" && 
+                task.category === category &&
                 task.dueAt.slice(0, 10) === today;
         });
     }
 
     return tasks.filter(task => {
         if (task.dueAt.includes("T")) {
-            return task.category !== "important" &&
+            return task.status === "active" && 
+                task.category !== "important" &&
                 task.dueAt.slice(0, 10) === today &&
                 task.dueAt.slice(11, 16) >= todayTime;
         }
 
-        return task.category !== "important" &&
+        return task.status === "active" && 
+            task.category !== "important" &&
             task.dueAt.slice(0, 10) === today;
     });
+}
+
+function getLocalDate() {
+    const now = new Date();
+
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, "0");
+    const day = String(now.getDate()).padStart(2, "0");
+
+    return `${year}-${month}-${day}`;
 }

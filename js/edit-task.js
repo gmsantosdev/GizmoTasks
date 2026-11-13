@@ -23,6 +23,7 @@ async function saveTaskChanges(event) {
     const {
         createdAt,
         completedAt,
+        status,
     } = task;
 
     const nameInput = document.querySelector("#task-name").value;
@@ -44,7 +45,7 @@ async function saveTaskChanges(event) {
     
     const confirm = await confirmModal("Confirm changes?", "Are you sure you want to confirm the changes of this task?");
     if (confirm) {
-        updateTask(createTask(id, nameInput, summaryInput, categoryInput, rangeInput, "active", dueAt, createdAt, updatedAt, completedAt));
+        updateTask(createTask(id, nameInput, summaryInput, categoryInput, rangeInput, status, dueAt, createdAt, updatedAt, completedAt));
         location.reload();
     }
 }
