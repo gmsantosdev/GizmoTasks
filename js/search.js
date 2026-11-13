@@ -10,5 +10,5 @@ function handleSearch(event) {
         return;
     }
 
-    window.location.href = `${window.location.origin + "/index.html"}?search=${encodeURIComponent(searchInput)}`;
+    window.location.href = `index.html?search=${encodeURIComponent(searchInput)}`;
 }

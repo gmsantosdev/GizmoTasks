@@ -22,8 +22,6 @@ if (currentPage.endsWith("create-task.html")) {
     }
 }
 
-sidebarActive.classList.add("active-sidebar");
-
 if (sidebarActive) {
     sidebarActive.classList.add("active-sidebar");
 }
