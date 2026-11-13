@@ -1,5 +1,5 @@
-import { getTaskById } from './storage.js';
-import { renderTaskDetails } from './ui.js';
+import { getPreferences, getTaskById } from './storage.js';
+import { renderTaskDetails, renderTaskView } from './ui.js';
 import { setMaxDate, setMinDate, setMinTime } from "./date-utils.js";
 
 const dateInput = document.querySelector("#task-date");
@@ -17,3 +17,4 @@ setMinDate();
 renderTaskDetails(task);
 setMinTime(dateInput);
 setMaxDate();
+renderTaskView(getTaskById(id), getPreferences().dateFormat, getPreferences().timeFormat);

@@ -23,7 +23,6 @@ textarea {
     resize: none;
 }
 
-
 /* ----- HEADER ----- */
 
 header {
@@ -311,7 +310,7 @@ main {
     color: var(--smooth-text-color);
 }
 
-#create, #details, #settings {
+#create, #details, #settings, .view-mode {
     background-color: var(--background-color);
     border-radius: 20px;
     padding: 20px;
@@ -405,7 +404,6 @@ main {
 
 .submit-buttons {
     display: flex;
-    justify-content: end;
     gap: 20px;
 }
 
@@ -445,6 +443,10 @@ main {
     background-color: var(--delete-button-color);
 }
 
+.edit {
+    background-color: var(--edit-button-color);
+}
+
 .submit-buttons button {
     background-color: var(--background-color);
     width: 150px;;
@@ -474,6 +476,7 @@ main {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    justify-content: flex-end;
 }
 
 .task-infos {
@@ -482,6 +485,46 @@ main {
     gap: 8px;
     justify-content: flex-end;
 }
+
+.view-mode {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.view-name-group, .view-summary-group div, .view-group div {
+    display: flex;
+    gap: 5px;
+    font-size: var(--font-size);
+    align-items: center;
+    padding: 5px;
+}
+
+#view-summary, #view-date, #view-time, #view-percentage, #view-category {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    font-weight: normal;
+    font-size: var(--font-size);
+}
+
+.view-summary-group h3 {
+    font-size: var(--font-size);
+}
+
+.view-triple-group {
+    display: flex;
+    gap: 80px;
+}
+
+.view-date-time {
+    display: flex;
+    font-weight: bold;
+}
+
+.edit-mode {
+    display: none;
+}
+
 
 /* ----- SETTINGS ----- */
 
@@ -596,8 +639,12 @@ main {
         flex-wrap: wrap;
     }
 
-    .triple-group, .final-details {
+    .triple-group, .final-details, .view-triple-group {
         flex-direction: column;
+    }
+
+    .view-triple-group {
+        gap: 20px;
     }
 
     .options-group {
@@ -709,4 +756,66 @@ main {
         --font-size: 17px;
         --title-size: 23px;
     }
+}
+
+/* ----- MODAL MESSAGE ----- */
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    padding: 30px;
+    border-radius: 20px;
+    width: 400px;
+    max-width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+#modal-title {
+    font-size: var(--title-size);
+}
+
+#modal-message {
+    font-size: var(--font-size);
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 20px;
+}
+
+.modal-buttons button {
+    font-size: var(--font-size);
+    padding: 5px;
+    border-radius: 10px;
+    width: 125px;
+    background-color: var(--edit-button-color);
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.modal-buttons button:hover {
+    transform: scale(1.05);
+}
+
+.modal-overlay[hidden], .modal-buttons button[hidden] {
+    display: none;
+}
+
+#modal-icon {
+    height: var(--icon-height);
+    width: var(--icon-width);
 }

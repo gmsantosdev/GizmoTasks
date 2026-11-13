@@ -1,6 +1,7 @@
 import { createTask } from "./task.js";
 import { getPreferences, getTaskById, updateTask } from "./storage.js";
 import { formatDate, updateStatusUI } from "./ui.js";
+import { showModal } from "./modal.js";
 
 
 const params = new URLSearchParams(window.location.search);
@@ -9,11 +10,17 @@ const id = Number(params.get("id"));
 const form = document.querySelector("#details");
 form.addEventListener("submit", completeTask);
 
+const viewComplete = document.querySelector("#view-complete-button");
+viewComplete.addEventListener("click", completeTask);
+
 function completeTask(event) {
     event.preventDefault();
 
-    if (event.submitter.value !== "complete") {
-        return;
+    try {
+        if (event.submitter.value !== "complete") {
+            return;
+        }
+    } catch (error) {
     }
 
     const task = getTaskById(id);
@@ -32,7 +39,7 @@ function completeTask(event) {
         completedAt,
         updatedAt
     } = task;
-
+    
     const now = new Date();
 
     if (status === "active") {
@@ -49,11 +56,9 @@ function completeTask(event) {
     
     updateTask(updatedTask);
     if (status === "completed") {
-        alert("Task completed successfully!");
+        showModal("Task complete!", "This task is marked as complete.");
     } else if (status === "active") {
-        alert("Task marked as active.");
-    } else {
-        alert("Task marked as expired.");
+        showModal("Active Task!", "This task is marked as active.");
     }
     
     updateStatusUI(updatedTask, getPreferences().dateFormat, getPreferences().timeFormat);

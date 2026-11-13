@@ -53,7 +53,8 @@ function getTaskDotClass(task) {
     return task.category;
 }
 
-export function renderTaskDetails(task) {
+
+export function renderTaskDetails(task, date, time) {
     const taskDot = document.querySelectorAll(".task-dot");
     const dotClass = getTaskDotClass(task);
 
@@ -70,133 +71,137 @@ export function renderTaskDetails(task) {
     const taskCategory = document.querySelector("#task-category");
     taskCategory.value = task.category;
 
-    const [date, time] = task.dueAt.split("T");
+    const [dateValue, timeValue] = task.dueAt.split("T");
 
     const taskDate = document.querySelector("#task-date");
     const taskTime = document.querySelector("#task-time");
-    taskDate.value = date;
-    if (time) {
-        taskTime.value = time;
-    }
+
+    taskDate.value = dateValue;
+    taskTime.value = timeValue || "";
 
     const taskProgress = document.querySelector("#task-range");
     taskProgress.value = task.progress;
 
-    const taskStatus = document.querySelector("#task-status");
+    // Update all status elements
+    const taskStatus = document.querySelectorAll(".task-status");
+
+    let statusText;
 
     if (task.status === "completed") {
-        taskStatus.textContent = "Completed";
+        statusText = "Completed";
     } else if (isTaskExpired(task)) {
-        taskStatus.textContent = "Expired";
+        statusText = "Expired";
     } else {
-        taskStatus.textContent = "Active";
+        statusText = "Active";
     }
 
-    const completeText = document.querySelector("#complete-text");
+    taskStatus.forEach(element => {
+        element.textContent = statusText;
+    });
+
+    const completeText = document.querySelectorAll(".complete-text");
 
     if (task.status === "completed") {
-        completeText.textContent = "Mark as incomplete";
+        completeText.forEach(element => {
+            element.textContent = "Mark as incomplete";
+        });
     } else {
-        completeText.textContent = "Mark as complete";
+        completeText.forEach(element => {
+            element.textContent = "Mark as complete";
+        });
     }
+
+    const createdDateDetail = document.querySelectorAll(".created-date");
+    const updatedDateDetail = document.querySelectorAll(".updated-date");
+    const dueDateDetail = document.querySelectorAll(".due-date");
+    const completedDateDetail = document.querySelectorAll(".completed-date");
+
+    function formatDateValue(value) {
+        if (!value) return "-";
+
+        const [year, month, day] = value.slice(0, 10).split("-");
+
+        if (date === "mm/dd/yyyy") {
+            return `${month}/${day}/${year}`;
+        } else if (date === "dd/mm/yyyy") {
+            return `${day}/${month}/${year}`;
+        } else if (date === "yyyy/mm/dd") {
+            return `${year}/${month}/${day}`;
+        }
+    }
+
+    function formatTimeValue(value) {
+        if (!value || !value.includes("T")) return "";
+
+        const [hour, minute] = value.slice(11, 16).split(":");
+
+        if (time === "24h") {
+            return `, at ${hour}:${minute}`;
+        } else if (time === "12h") {
+            const numericHour = Number(hour);
+            const period = numericHour >= 12 ? "PM" : "AM";
+            const hour12 = numericHour % 12 || 12;
+
+            return `, at ${hour12}:${minute} ${period}`;
+        }
+
+        return "";
+    }
+
+    const createdText = formatDateValue(task.createdAt) + formatTimeValue(task.createdAt);
+    const updatedText = formatDateValue(task.updatedAt) + formatTimeValue(task.updatedAt);
+    const dueText = formatDateValue(task.dueAt) + formatTimeValue(task.dueAt);
+    const completedText = formatDateValue(task.completedAt) + formatTimeValue(task.completedAt);
+
+    createdDateDetail.forEach(element => element.textContent = createdText);
+    updatedDateDetail.forEach(element => element.textContent = updatedText);
+    dueDateDetail.forEach(element => element.textContent = dueText);
+    completedDateDetail.forEach(element => element.textContent = completedText);
 }
 
 export function updateStatusUI(task, date, time) {
     const taskDot = document.querySelectorAll(".task-dot");
+    const taskStatus = document.querySelectorAll(".task-status");
+    const completeText = document.querySelectorAll(".complete-text");
+
     const dotClass = getTaskDotClass(task);
 
-    for (const dot of taskDot) {
-        dot.className = `task-dot ${dotClass}`;
-    }
+    taskDot.forEach(element => {
+        element.className = `task-dot ${dotClass}`;
+    });
 
-    const taskStatus = document.querySelector("#task-status");
+    let statusText;
 
     if (task.status === "completed") {
-        taskStatus.textContent = "Completed";
+        statusText = "Completed";
     } else if (isTaskExpired(task)) {
-        taskStatus.textContent = "Expired";
+        statusText = "Expired";
     } else {
-        taskStatus.textContent = "Active";
+        statusText = "Active";
     }
 
-    const completeText = document.querySelector("#complete-text");
+    taskStatus.forEach(element => {
+        element.textContent = statusText;
+    });
 
-    if (task.status === "completed") {
-        completeText.textContent = "Mark as incomplete";
-    } else {
-        completeText.textContent = "Mark as complete";
-    }
-
-    const updatedDateDetail = document.querySelector("#updated-date");
-    let updatedYear, updatedMonth, updatedDay;
-    if (task.updatedAt) {
-        [updatedYear, updatedMonth, updatedDay] = task.updatedAt.slice(0, 10).split('-');
-    }
-    const completedDateDetail = document.querySelector("#completed-date");
-    let completedYear, completedMonth, completedDay;
-    if (task.completedAt) {
-        [completedYear, completedMonth, completedDay] = task.completedAt.slice(0, 10).split('-');
-    }
-    
-    if (date === "mm/dd/yyyy") {
-        if (!task.completedAt) {
-            updatedDateDetail.textContent = `${updatedMonth}/${updatedDay}/${updatedYear}`;
-            completedDateDetail.textContent = "-";
+    completeText.forEach(element => {
+        if (task.status === "completed") {
+            element.textContent = "Mark as incomplete";
         } else {
-            completedDateDetail.textContent = `${completedMonth}/${completedDay}/${completedYear}`;
-            updatedDateDetail.textContent = "-";
+            element.textContent = "Mark as complete";
         }
-    } else if (date === "dd/mm/yyyy") {
-        if (!task.completedAt) {
-            updatedDateDetail.textContent = `${updatedDay}/${updatedMonth}/${updatedYear}`;
-            completedDateDetail.textContent = "-";
-        } else {
-            completedDateDetail.textContent = `${completedDay}/${completedMonth}/${completedYear}`;
-            updatedDateDetail.textContent = "-";
-        }
-    } else if (date === "yyyy/mm/dd") {
-        if (!task.completedAt) {
-            updatedDateDetail.textContent = `${updatedYear}/${updatedMonth}/${updatedDay}`;
-            completedDateDetail.textContent = "-";
-        } else {
-            completedDateDetail.textContent = `${completedYear}/${completedMonth}/${completedDay}`;
-            updatedDateDetail.textContent = "-";
-        }
-    }
+    });
 
-    if (!task.updatedAt) {
-        updatedDateDetail.textContent = "-";
-    }
+    const updatedDateDetail = document.querySelectorAll(".updated-date");
+    const completedDateDetail = document.querySelectorAll(".completed-date");
 
-    let updatedHour, updatedMinute;
-    if (task.updatedAt) {
-        [updatedHour, updatedMinute] = task.updatedAt.slice(11, 16).split(':');
-    }
-    let completedHour, completedMinute;
-    if (task.completedAt) {
-        [completedHour, completedMinute] = task.completedAt.slice(11, 16).split(':');
-    }
-    
-    if (time === "24h") {
-        if (task.updatedAt) {
-            updatedDateDetail.textContent = `${updatedDateDetail.textContent}, at ${updatedHour}:${updatedMinute}.`;
-        }
-        if (task.completedAt) {
-            completedDateDetail.textContent = `${completedDateDetail.textContent}, at ${completedHour}:${completedMinute}.`;
-        }
-    } else if (time === "12h") {
-        if (!task.completedAt) {
-            if (task.updatedAt) {
-                const updatedPeriod = updatedHour >= 12 ? 'PM' : 'AM';
-                const updatedHour12 = updatedHour % 12 || 12;
-                updatedDateDetail.textContent = `${updatedDateDetail.textContent}, at ${updatedHour12}:${updatedMinute} ${updatedPeriod}.`;
-            }
-        } else {
-            const completedPeriod = completedHour >= 12 ? 'PM' : 'AM';
-            const completedHour12 = completedHour % 12 || 12;
-            completedDateDetail.textContent = `${completedDateDetail.textContent}, at ${completedHour12}:${completedMinute} ${completedPeriod}.`;
-        }
-    }
+    updatedDateDetail.forEach(element => {
+        element.textContent = task.updatedAt || "-";
+    });
+
+    completedDateDetail.forEach(element => {
+        element.textContent = task.completedAt || "-";
+    });
 }
 
 function renderTask(task) {
@@ -272,116 +277,231 @@ export function renderPreferences(preferences) {
 }
 
 export function formatDate(task, date) {
-    const createdDateDetail = document.querySelector("#created-date");
+    const createdDateDetail = document.querySelectorAll(".created-date");
     const [createdYear, createdMonth, createdDay] = task.createdAt.slice(0, 10).split('-');
-    const updatedDateDetail = document.querySelector("#updated-date");
+
+    const updatedDateDetail = document.querySelectorAll(".updated-date");
 
     let updatedYear, updatedMonth, updatedDay;
     if (task.updatedAt) {
         [updatedYear, updatedMonth, updatedDay] = task.updatedAt.slice(0, 10).split('-');
     }
 
-    const dueDateDetail = document.querySelector("#due-date");
+    const dueDateDetail = document.querySelectorAll(".due-date");
     const [dueYear, dueMonth, dueDay] = task.dueAt.slice(0, 10).split('-');
-    const completedDateDetail = document.querySelector("#completed-date");
+
+    const completedDateDetail = document.querySelectorAll(".completed-date");
 
     let completedYear, completedMonth, completedDay;
     if (task.completedAt) {
         [completedYear, completedMonth, completedDay] = task.completedAt.slice(0, 10).split('-');
     }
-    
+
     if (date === "mm/dd/yyyy") {
-        createdDateDetail.textContent = `${createdMonth}/${createdDay}/${createdYear}`;
-        dueDateDetail.textContent = `${dueMonth}/${dueDay}/${dueYear}`;
+        createdDateDetail.forEach(element => {
+            element.textContent = `${createdMonth}/${createdDay}/${createdYear}`;
+        });
+
+        dueDateDetail.forEach(element => {
+            element.textContent = `${dueMonth}/${dueDay}/${dueYear}`;
+        });
 
         if (!task.completedAt) {
-            updatedDateDetail.textContent = `${updatedMonth}/${updatedDay}/${updatedYear}`;
-            completedDateDetail.textContent = "-";
+            updatedDateDetail.forEach(element => {
+                element.textContent = `${updatedMonth}/${updatedDay}/${updatedYear}`;
+            });
+
+            completedDateDetail.forEach(element => {
+                element.textContent = "-";
+            });
         } else {
-            completedDateDetail.textContent = `${completedMonth}/${completedDay}/${completedYear}`;
+            completedDateDetail.forEach(element => {
+                element.textContent = `${completedMonth}/${completedDay}/${completedYear}`;
+            });
         }
+
     } else if (date === "dd/mm/yyyy") {
-        createdDateDetail.textContent = `${createdDay}/${createdMonth}/${createdYear}`;
-        dueDateDetail.textContent = `${dueDay}/${dueMonth}/${dueYear}`;
+        createdDateDetail.forEach(element => {
+            element.textContent = `${createdDay}/${createdMonth}/${createdYear}`;
+        });
+
+        dueDateDetail.forEach(element => {
+            element.textContent = `${dueDay}/${dueMonth}/${dueYear}`;
+        });
 
         if (!task.completedAt) {
-            updatedDateDetail.textContent = `${updatedDay}/${updatedMonth}/${updatedYear}`;
-            completedDateDetail.textContent = "-";
+            updatedDateDetail.forEach(element => {
+                element.textContent = `${updatedDay}/${updatedMonth}/${updatedYear}`;
+            });
+
+            completedDateDetail.forEach(element => {
+                element.textContent = "-";
+            });
         } else {
-            completedDateDetail.textContent = `${completedDay}/${completedMonth}/${completedYear}`;
+            completedDateDetail.forEach(element => {
+                element.textContent = `${completedDay}/${completedMonth}/${completedYear}`;
+            });
         }
+
     } else if (date === "yyyy/mm/dd") {
-        createdDateDetail.textContent = `${createdYear}/${createdMonth}/${createdDay}`;
-        dueDateDetail.textContent = `${dueYear}/${dueMonth}/${dueDay} `;
+        createdDateDetail.forEach(element => {
+            element.textContent = `${createdYear}/${createdMonth}/${createdDay}`;
+        });
+
+        dueDateDetail.forEach(element => {
+            element.textContent = `${dueYear}/${dueMonth}/${dueDay} `;
+        });
 
         if (!task.completedAt) {
-            updatedDateDetail.textContent = `${updatedYear}/${updatedMonth}/${updatedDay}`;
-            completedDateDetail.textContent = "-";
+            updatedDateDetail.forEach(element => {
+                element.textContent = `${updatedYear}/${updatedMonth}/${updatedDay}`;
+            });
+
+            completedDateDetail.forEach(element => {
+                element.textContent = "-";
+            });
         } else {
-            completedDateDetail.textContent = `${completedYear}/${completedMonth}/${completedDay}`;
+            completedDateDetail.forEach(element => {
+                element.textContent = `${completedYear}/${completedMonth}/${completedDay}`;
+            });
         }
     }
 
     if (!task.updatedAt) {
-        updatedDateDetail.textContent = "-";
+        updatedDateDetail.forEach(element => {
+            element.textContent = "-";
+        });
     }
 }
 
 export function formatTime(task, time) {
-    const createdDateDetail = document.querySelector("#created-date");
+    const createdDateDetail = document.querySelectorAll(".created-date");
     const [createdHour, createdMinute] = task.createdAt.slice(11, 16).split(':');
-    const updatedDateDetail = document.querySelector("#updated-date");
+
+    const updatedDateDetail = document.querySelectorAll(".updated-date");
 
     let updatedHour, updatedMinute;
     if (task.updatedAt) {
         [updatedHour, updatedMinute] = task.updatedAt.slice(11, 16).split(':');
     }
 
-    const dueDateDetail = document.querySelector("#due-date");
+    const dueDateDetail = document.querySelectorAll(".due-date");
     const [dueHour, dueMinute] = task.dueAt.slice(11, 16).split(":");
-    const completedDateDetail = document.querySelector("#completed-date");
+
+    const completedDateDetail = document.querySelectorAll(".completed-date");
 
     let completedHour, completedMinute;
     if (task.completedAt) {
         [completedHour, completedMinute] = task.completedAt.slice(11, 16).split(':');
     }
-    
+
     if (time === "24h") {
-        createdDateDetail.textContent = `${createdDateDetail.textContent}, at ${createdHour}:${createdMinute}.`;
+        createdDateDetail.forEach(element => {
+            element.textContent = `${element.textContent}, at ${createdHour}:${createdMinute}.`;
+        });
+
         if (task.updatedAt) {
-            updatedDateDetail.textContent = `${updatedDateDetail.textContent}, at ${updatedHour}:${updatedMinute}.`;
+            updatedDateDetail.forEach(element => {
+                element.textContent = `${element.textContent}, at ${updatedHour}:${updatedMinute}.`;
+            });
         }
+
         if (task.completedAt) {
-            completedDateDetail.textContent = `${completedDateDetail.textContent}, at ${completedHour}:${completedMinute}.`;
+            completedDateDetail.forEach(element => {
+                element.textContent = `${element.textContent}, at ${completedHour}:${completedMinute}.`;
+            });
         }
+
         if (task.dueAt.includes("T")) {
-            dueDateDetail.textContent = `${dueDateDetail.textContent.slice(0, 10)}, at ${dueHour}:${dueMinute}.`;
+            dueDateDetail.forEach(element => {
+                element.textContent = `${element.textContent.slice(0, 10)}, at ${dueHour}:${dueMinute}.`;
+            });
         } else {
-            dueDateDetail.textContent = `${dueDateDetail.textContent.slice(0, 10)}.`;
+            dueDateDetail.forEach(element => {
+                element.textContent = `${element.textContent.slice(0, 10)}.`;
+            });
         }
+
     } else if (time === "12h") {
         const createdPeriod = createdHour >= 12 ? 'PM' : 'AM';
         const createdHour12 = createdHour % 12 || 12;
-        createdDateDetail.textContent = `${createdDateDetail.textContent}, at ${createdHour12}:${createdMinute} ${createdPeriod}.`;
+
+        createdDateDetail.forEach(element => {
+            element.textContent = `${element.textContent}, at ${createdHour12}:${createdMinute} ${createdPeriod}.`;
+        });
 
         if (!task.completedAt) {
             if (task.updatedAt) {
                 const updatedPeriod = updatedHour >= 12 ? 'PM' : 'AM';
                 const updatedHour12 = updatedHour % 12 || 12;
-                updatedDateDetail.textContent = `${updatedDateDetail.textContent}, at ${updatedHour12}:${updatedMinute} ${updatedPeriod}.`;
+
+                updatedDateDetail.forEach(element => {
+                    element.textContent = `${element.textContent}, at ${updatedHour12}:${updatedMinute} ${updatedPeriod}.`;
+                });
             }
         } else {
             const completedPeriod = completedHour >= 12 ? 'PM' : 'AM';
             const completedHour12 = completedHour % 12 || 12;
-            completedDateDetail.textContent = `${completedDateDetail.textContent}, at ${completedHour12}:${completedMinute} ${completedPeriod}.`;
+
+            completedDateDetail.forEach(element => {
+                element.textContent = `${element.textContent}, at ${completedHour12}:${completedMinute} ${completedPeriod}.`;
+            });
         }
 
         const duePeriod = dueHour >= 12 ? 'PM' : 'AM';
         const dueHour12 = dueHour % 12 || 12;
+
         if (task.dueAt.includes("T")) {
-            dueDateDetail.textContent = `${dueDateDetail.textContent}, at ${dueHour12}:${dueMinute} ${duePeriod}.`;
+            dueDateDetail.forEach(element => {
+                element.textContent = `${element.textContent}, at ${dueHour12}:${dueMinute} ${duePeriod}.`;
+            });
         } else {
-            dueDateDetail.textContent = `${dueDateDetail.textContent.slice(0, 10)}.`;
+            dueDateDetail.forEach(element => {
+                element.textContent = `${element.textContent.slice(0, 10)}.`;
+            });
         }
     }
+}
+
+export function renderTaskView(task, dateFormat, timeFormat) {
+    const title = document.querySelector("#view-name");
+    title.textContent = task.name;
+
+    const summary = document.querySelector("#view-summary");
+    summary.textContent = task.summary;
+
+    const category = document.querySelector("#view-category");
+    category.textContent = task.category;
+
+    const dueDate = document.querySelector("#view-date");
+    const dueTime = document.querySelector("#view-time");
+
+    const [year, month, day] = task.dueAt.slice(0, 10).split("-");
+
+    if (dateFormat === "mm/dd/yyyy") {
+        dueDate.textContent = `${month}/${day}/${year}`;
+    } else if (dateFormat === "dd/mm/yyyy") {
+        dueDate.textContent = `${day}/${month}/${year}`;
+    } else if (dateFormat === "yyyy/mm/dd") {
+        dueDate.textContent = `${year}/${month}/${day}`;
+    }
+
+    if (task.dueAt.includes("T")) {
+        const [hour, minute] = task.dueAt.split("T")[1].slice(0, 5).split(":");
+        const numericHour = Number(hour);
+
+        if (timeFormat === "24h") {
+            dueTime.textContent = `${hour}:${minute}`;
+        } else if (timeFormat === "12h") {
+            const period = numericHour >= 12 ? "PM" : "AM";
+            const hour12 = numericHour % 12 || 12;
+
+            dueTime.textContent = `${hour12}:${minute} ${period}`;
+        }
+    } else {
+        dueTime.textContent = "Not set";
+    }
+
+    const progress = document.querySelector("#view-percentage");
+    progress.textContent = `${task.progress}%`;
 }

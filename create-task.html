@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GizmoTasks</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="assets/images/icon-Black.png">
 </head>
 <body>
     <header>
@@ -99,7 +100,7 @@
                 </div>
 
                 <div class="submit-buttons">
-                    <a href="index.html">
+                    <a href="#" id="cancel-button">
                         <span class="image-background cancel"><img src="assets/icons/cancel.png" alt="Cancel changes icon"></span>
                         <span>Cancel<br>changes</span>
                     </a>
@@ -113,6 +114,22 @@
             </form>
         </section>
     </main>
+
+    <div id="modal-overlay" class="modal-overlay" hidden>
+        <div class="modal" role="dialog" aria-modal="true">
+            <img id="modal-icon" alt="Modal icon">
+            <h2 id="modal-title"></h2>
+            <p id="modal-message"></p>
+
+            <div class="modal-buttons">
+                <button type="button" id="modal-success" hidden>Ok</button>
+                <button type="button" id="modal-cancel" hidden>Cancel</button>
+                <button type="button" id="modal-confirm" hidden>Confirm</button>
+            </div>
+        </div>
+    </div>
+
+
     <script type="module" src="js/create-task.js"></script>
     <script type="module" src="js/range.js"></script>
     <script type="module" src="js/search.js"></script>

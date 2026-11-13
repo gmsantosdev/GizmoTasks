@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GizmoTasks</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="assets/images/icon-Black.png">
 </head>
 <body>
     <header>
@@ -40,7 +41,105 @@
         </nav>
 
         <section class="main-section">
-            <form id="details">
+            <!-- View Mode -->
+            <section class="view-mode">
+                <div class="view-name-group">
+                    <span class="task-dot">●</span>
+                    <h2 id="view-name"></h2>
+                </div>
+                    
+                <div class="view-summary-group">
+                    <div>
+                        <img class="icon" src="assets/icons/summary.png" alt="Summary icon">
+                        <h2>Summary</h2>
+                    </div>
+                    <h3 id="view-summary"></h3>
+                </div>
+
+                <div class="view-triple-group">
+                    <div class="view-group">
+                        <div>
+                            <img class="icon" src="assets/icons/category.png" alt="Category icon">
+                            <h2>Category</h2>
+                        </div>
+                        <h3>Category: <span id="view-category"></span></h3>
+                    </div>
+
+                    <div class="view-group">
+                        <div>
+                            <img class="icon" src="assets/icons/today-task.png" alt="Expiration date icon">
+                            <h3>Expiration date and time</h3>
+                        </div>
+
+                        <div class="view-date-time">
+                            <div>
+                                <label for="task-date">Date:</label>
+                                <h3 id="view-date"></h3>
+                            </div>
+
+                            <div>
+                                <label for="task-time">Time:</label>
+                                <h3 id="view-time"></h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="view-group">
+                        <div>
+                            <img class="icon" src="assets/icons/progress.png" alt="Progress icon">
+                            <h2>Progress</h2>
+                        </div>
+                        <h3>Complete percentage: <span id="view-percentage"></span></h3>
+                    </div>
+                </div>
+
+                <div class="final-details">
+                    <div class="task-infos">
+                        <p>
+                            <span>Status: </span>
+                            <span class="task-dot">●</span>
+                            <span class="task-status"></span>
+                        </p>
+                        <p>
+                            <span>Created: </span>
+                            <span class="created-date"></span>
+                        </p>
+                        <p>
+                            <span>Last modified: </span>
+                            <span class="updated-date"></span>
+                        </p>
+                        <p>
+                            <span>Due date:</span>
+                            <span class="due-date"></span>
+                        </p>
+                        <p>
+                            <span>Completed date:</span>
+                            <span class="completed-date"></span>
+                        </p>
+                    </div>
+
+                    <div class="buttons-group">
+                        <div class="submit-buttons">
+                            <button name="view-complete-button" id="view-complete-button" value="complete" formnovalidate>
+                                <span class="image-background mark-complete"><img src="assets/icons/mark-complete.png" alt="Mark as complete icon"></span>
+                                <span class="complete-text"></span>
+                            </button>
+                            <button name="edit-button" id="edit-button">
+                                <span class="image-background edit"><img src="assets/icons/edit.png" alt="Edit task icon"></span>
+                                <span>Edit task</span>
+                            </button>
+                            <button name="delete-button" id="delete-button" value="delete">
+                                <span class="image-background delete"><img src="assets/icons/delete-task.png" alt="Delete task icon"></span>
+                                <span>Delete<br>task</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Edit Mode -->
+            <section class="edit-mode">
+                <form id="details">
                 <div class="title-group">
                     <span class="task-dot">●</span>
                     <input type="text" id="task-name" placeholder="Rename the task name..." maxlength="28">
@@ -103,29 +202,29 @@
                         <p>
                             <span>Status: </span>
                             <span class="task-dot">●</span>
-                            <span id="task-status"></span>
+                            <span class="task-status"></span>
                         </p>
                         <p>
                             <span>Created: </span>
-                            <span id="created-date"></span>
+                            <span class="created-date"></span>
                         </p>
                         <p>
                             <span>Last modified: </span>
-                            <span id="updated-date"></span>
+                            <span class="updated-date"></span>
                         </p>
                         <p>
                             <span>Due date:</span>
-                            <span id="due-date"></span>
+                            <span class="due-date"></span>
                         </p>
                         <p>
                             <span>Completed date:</span>
-                            <span id="completed-date"></span>
+                            <span class="completed-date"></span>
                         </p>
                     </div>
 
                     <div class="buttons-group">
                         <div class="submit-buttons">
-                            <a href="index.html">
+                            <a href="#" id="cancel-button">
                                 <span class="image-background cancel"><img src="assets/icons/cancel.png" alt="Cancel changes icon"></span>
                                 <span>Cancel<br>changes</span>
                             </a>
@@ -135,11 +234,11 @@
                             </button>
                         </div>
                         <div class="submit-buttons">
-                            <button type="submit" name="complete-button" id="complete-button" value="complete">
+                            <button type="submit" name="complete-button" id="complete-button" value="complete" formnovalidate>
                                 <span class="image-background mark-complete"><img src="assets/icons/mark-complete.png" alt="Mark as complete icon"></span>
-                                <span id="complete-text"></span>
+                                <span class="complete-text">Mark as complete</span>
                             </button>
-                            <button type="button" name="delete-button" id="delete-button" value="delete">
+                            <button type="button" name="view-delete-button" id="view-delete-button" value="delete">
                                 <span class="image-background delete"><img src="assets/icons/delete-task.png" alt="Delete task icon"></span>
                                 <span>Delete<br>task</span>
                             </button>
@@ -147,8 +246,24 @@
                     </div>
                 </div>
             </form>
+            </section>
         </section>
     </main>
+
+    <div id="modal-overlay" class="modal-overlay" hidden>
+        <div class="modal">
+            <img id="modal-icon" alt="Modal icon">
+            <h2 id="modal-title"></h2>
+            <p id="modal-message"></p>
+
+            <div class="modal-buttons">
+                <button id="modal-success" hidden>Ok</button>
+                <button id="modal-cancel" hidden>Cancel</button>
+                <button id="modal-confirm" hidden>Confirm</button>
+            </div>
+        </div>
+    </div>
+
     <script type="module" src="js/task-details.js"></script>
     <script type="module" src="js/edit-task.js"></script>
     <script type="module" src="js/complete-task.js"></script>

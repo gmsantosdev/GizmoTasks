@@ -2,6 +2,7 @@ import { createTask } from "./task.js";
 import { saveTask, generateId } from "./storage.js";
 import { setMaxDate, setMinDate, setMinTime } from "./date-utils.js";
 import { applyPreferences } from "./preferences-ui.js";
+import { confirmModal, showModal } from "./modal.js";
 
 applyPreferences();
 const dateInput = document.querySelector("#task-date");
@@ -40,5 +41,17 @@ function handleSubmit(event) {
     saveTask(createTask(id, nameInput, summaryInput, categoryInput, rangeInput, "active", dueAt, createdAt, null, null));
     form.reset();
     setMinTime(dateInput);
-    alert("Task created successfully!");
+    showModal("Task created!", "Now you can see your task in the task list.");
+}
+
+const cancelButton = document.querySelector("#cancel-button");
+cancelButton.addEventListener("click", showViewMode);
+
+async function showViewMode(event) {
+    event.preventDefault();
+    const confirmed = await confirmModal("Cancel task?", "Are you sure you want to cancel the changes of this task?");
+    
+    if (confirmed) {
+        window.location.href = "index.html";
+    }
 }
